@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html lang=en>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     
-    <title>Archive: 2025 | Hexo</title>
+    <title>Archive: 2025 | MyWiki</title>
     
     
-        <meta name="keywords" content="Hexo" />
+        <meta name="keywords" content="MyWiki">
     
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="MyWiki">
 <meta property="og:url" content="http://example.com/archives/2025/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="MyWiki">
 <meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="muyin">
 <meta name="twitter:card" content="summary">
     
 
     
-        <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml" />
+        <link rel="alternate" href="/atom.xml" title="MyWiki" type="application/atom+xml">
     
 
     
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico">
     
 
     
@@ -62,8 +62,6 @@
 
 
     
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body>
@@ -72,8 +70,8 @@
     <div id="header-main" class="header-inner">
         <div class="outer">
             <a href="/" id="logo">
-                <i class="logo"></i>
-                <span class="site-title">Hexo</span>
+                
+                <span class="site-title">MyWiki</span>
             </a>
             <nav id="main-nav">
                 
@@ -81,25 +79,21 @@
                 
                     <a class="main-nav-link" href="/archives">归档</a>
                 
-                    <a class="main-nav-link" href="/categories">分类</a>
-                
                     <a class="main-nav-link" href="/tags">标签</a>
-                
-                    <a class="main-nav-link" href="/about">关于</a>
                 
             </nav>
             
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <input type="text" class="ins-search-input" placeholder="Type something...">
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -138,16 +132,12 @@
                 
                     <td><a class="main-nav-link" href="/archives">归档</a></td>
                 
-                    <td><a class="main-nav-link" href="/categories">分类</a></td>
-                
                     <td><a class="main-nav-link" href="/tags">标签</a></td>
-                
-                    <td><a class="main-nav-link" href="/about">关于</a></td>
                 
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
     </div>
 
                 </td>
@@ -162,6 +152,93 @@
                 <aside id="sidebar">
    
         
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>categories</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            802.15.4
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/802-15-4-sec-related/">802.15.4-sec_related</a></li>  <li class="file"><a href="/wiki/802-15-4-mac-frm/">802.15.4-mac_frm</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
     
     <div id="toTop" class="fa fa-angle-up"></div>
 </aside>
@@ -175,7 +252,7 @@
     
             <div class="timeline-row timeline-row-major">
                 <span class="node"><i class="fa fa-calendar"></i></span>
-                <h1 class="title"><a href="/archives/2025/03/">2025-03</a><span class="archive-list-count">1</span></h1>
+                <h1 class="title"><a href="/archives/2025/03/">2025-03</a><span class="archive-list-count">2</span></h1>
             </div>
     
         <div class="timeline-row">
@@ -184,7 +261,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2025/03/11/hello-world/">Hello World</a>
+            <a class="timeline-article-title" href="/wiki/802-15-4-mac-frm/">802.15.4-mac_frm</a>
         </h1>
     
 
@@ -193,14 +270,62 @@
                     
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2025/03/11/hello-world/">
-            <time datetime="2025-03-11T14:08:24.512Z" itemprop="datePublished">2025-03-11</time>
+        <a href="/wiki/802-15-4-mac-frm/">
+            <time datetime="2025-03-10T11:23:52.000Z" itemprop="datePublished">2025-03-10</time>
         </a>
     </div>
 
 
                     
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/802-15-4/">802.15.4</a>
+    </div>
+
                     
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/802-15-4/" rel="tag">802.15.4</a>
+    </div>
+
+                </div>
+                
+            </div>
+        </div>
+    
+        <div class="timeline-row">
+            <span class="node"></span>
+            <div class="content">
+                
+    
+        <h1 itemprop="name">
+            <a class="timeline-article-title" href="/wiki/802-15-4-sec-related/">802.15.4-sec_related</a>
+        </h1>
+    
+
+                
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/802-15-4-sec-related/">
+            <time datetime="2025-03-08T02:54:19.000Z" itemprop="datePublished">2025-03-08</time>
+        </a>
+    </div>
+
+
+                    
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/802-15-4/">802.15.4</a>
+    </div>
+
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/802-15-4/" rel="tag">802.15.4</a>
+    </div>
+
                 </div>
                 
             </div>
@@ -212,14 +337,6 @@
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            John Doe &copy; 2025 
-            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
-            <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
-            
-                <br>
-                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
-                &nbsp;|&nbsp;
-                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
             
         </div>
     </div>

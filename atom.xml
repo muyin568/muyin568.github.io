@@ -1,38 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>MyWiki</title>
   
   
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-11T14:08:24.512Z</updated>
+  <updated>2025-03-13T00:27:53.562Z</updated>
   <id>http://example.com/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>muyin</name>
     
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://example.com/2025/03/11/hello-world/"/>
-    <id>http://example.com/2025/03/11/hello-world/</id>
-    <published>2025-03-11T14:08:24.512Z</published>
-    <updated>2025-03-11T14:08:24.512Z</updated>
+    <title>802.15.4-mac_frm</title>
+    <link href="http://example.com/wiki/802-15-4-mac-frm/"/>
+    <id>http://example.com/wiki/802-15-4-mac-frm/</id>
+    <published>2025-03-10T11:23:52.000Z</published>
+    <updated>2025-03-13T00:27:53.562Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="General-MAC-frame-format"><a href="#General-MAC-frame-format" class="headerlink" title="General MAC frame format"></a>General MAC frame format</h2><center><img src="/../images/802154_mac_frm/1_general_format.png" alt="frm_type" width="600px"></center><br/><h3 id="frm-control"><a href="#frm-control" class="headerlink" title="frm control"></a>frm control</h3><center><img src="/../images/802154_mac_frm/3_frm_control.png" alt="frm_type" width="500px"></center><br/><h5 id="mac-frm-type"><a href="#mac-frm-type" class="headerlink" title="mac frm type"></a>mac frm type</h5><center><img src="/../images/802154_mac_frm/2_frm_type.png" alt="frm_type" width="350px"></center><h5 id="Security-Enabled"><a href="#Security-Enabled" class="headerlink" title="Security Enabled"></a>Security Enabled</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Security Enabled = 1（启用安全性）：</span><br><span class="line">    该帧受到 MAC 子层安全机制 保护；</span><br><span class="line">    MHR（MAC 帧头）中必须包含 辅助安全头部 (Auxiliary Security Header) 字段。</span><br><span class="line">Security Enabled = 0（未启用安全性）：</span><br><span class="line">    该帧不受 MAC 子层保护；MHR 不包含 辅助安全头部。</span><br></pre></td></tr></table></figure><br/><h5 id="Security-Enabled-1"><a href="#Security-Enabled-1" class="headerlink" title="Security Enabled"></a>Security Enabled</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Frame Pending（帧挂起）字段用于指示发送设备是否还有 更多数据 需要发送给接收设备。</span><br><span class="line"></span><br><span class="line">字段规则</span><br><span class="line">•Frame Pending = 1（有数据待发送）：</span><br><span class="line">    发送设备仍有待传输的数据帧。</span><br><span class="line">    接收设备可继续监听信道以接收后续数据。</span><br><span class="line">•Frame Pending = 0（无数据待发送）：</span><br><span class="line">    发送设备没有待传输的数据帧。</span><br><span class="line">    接收设备可以关闭无线电以节省能耗。</span><br><span class="line"></span><br><span class="line">适用场景</span><br><span class="line">1.信标帧 (Beacon Frame)：</span><br><span class="line">    Frame Pending 字段可用于指示 PAN 设备是否有待发送的数据给某个子设备。</span><br><span class="line">2.启用信标的 PAN (Beacon-Enabled PAN)：</span><br><span class="line">        设备在CAP（竞争访问周期）期间发送数据时，可以使用该字段指示是否仍有待发送的数据。</span><br><span class="line">3.非信标 PAN (Non-Beacon-Enabled PAN)：</span><br><span class="line">    设备可以在任何时间使用该字段，提示接收方是否需要保持接收状态。</span><br><span class="line"></span><br><span class="line">特殊模式中的行为</span><br><span class="line">•低功耗 CSL 模式（LE CSL Mode）：</span><br><span class="line">    Frame Pending = 1 时，表示发送设备仍有待传输数据，希望接收设备保持无线电开启直到 Frame Pending 变为 0。</span><br><span class="line">•TSCH 模式（时隙通信，Time-Slotted Channel Hopping）：</span><br><span class="line">            Frame Pending = 1 时，表示接收设备应该在下一个时隙继续监听，即使没有预定的通信链接。</span><br><span class="line"></span><br><span class="line">忽略情况</span><br><span class="line">•除了上述情况外，在其他时间发送的帧中，Frame Pending 字段应设为 0，并且接收方应忽略该字段。</span><br></pre></td></tr></table></figure><br/>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+    <summary type="html">&lt;h2 id=&quot;General-MAC-frame-format&quot;&gt;&lt;a href=&quot;#General-MAC-frame-format&quot; class=&quot;headerlink&quot; title=&quot;General MAC frame format&quot;&gt;&lt;/a&gt;General MAC fr</summary>
       
     
     
     
+    <category term="802.15.4" scheme="http://example.com/categories/802-15-4/"/>
+    
+    
+    <category term="802.15.4" scheme="http://example.com/tags/802-15-4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>802.15.4-sec_related</title>
+    <link href="http://example.com/wiki/802-15-4-sec-related/"/>
+    <id>http://example.com/wiki/802-15-4-sec-related/</id>
+    <published>2025-03-08T02:54:19.000Z</published>
+    <updated>2025-03-13T00:28:00.985Z</updated>
+    
+    <content type="html"><![CDATA[<iframe src="https://muyin568.github.io/drawio_htmls/incoming_dec.drawio.html" width="100%" height="1000"></iframe>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;iframe src=&quot;https://muyin568.github.io/drawio_htmls/incoming_dec.drawio.html&quot; width=&quot;100%&quot; height=&quot;1000&quot;&gt;&lt;/iframe&gt;
+</summary>
+      
+    
+    
+    
+    <category term="802.15.4" scheme="http://example.com/categories/802-15-4/"/>
+    
+    
+    <category term="802.15.4" scheme="http://example.com/tags/802-15-4/"/>
     
   </entry>
   
