@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/wiki/802-15-4-sec-related/</loc>
+    <loc>http://example.com/wiki/802-15-4-mac-frm/</loc>
     
-    <lastmod>2025-03-13</lastmod>
+    <lastmod>2025-03-14</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/wiki/802-15-4-mac-frm/</loc>
+    <loc>http://example.com/wiki/802-15-4-sec-related/</loc>
     
     <lastmod>2025-03-13</lastmod>
     
@@ -49,7 +49,7 @@
 
   <url>
     <loc>http://example.com/</loc>
-    <lastmod>2025-03-13</lastmod>
+    <lastmod>2025-03-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -57,7 +57,7 @@
   
   <url>
     <loc>http://example.com/tags/802-15-4/</loc>
-    <lastmod>2025-03-13</lastmod>
+    <lastmod>2025-03-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -66,7 +66,7 @@
   
   <url>
     <loc>http://example.com/categories/802-15-4/</loc>
-    <lastmod>2025-03-13</lastmod>
+    <lastmod>2025-03-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
