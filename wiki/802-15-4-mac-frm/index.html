@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/1_general_format.png">
 <meta property="article:published_time" content="2025-03-10T11:23:52.000Z">
-<meta property="article:modified_time" content="2025-03-17T00:29:56.462Z">
+<meta property="article:modified_time" content="2025-03-17T00:41:48.014Z">
 <meta property="article:author" content="muyin">
 <meta property="article:tag" content="802.15.4">
 <meta name="twitter:card" content="summary">
@@ -301,11 +301,11 @@
             <p>主要介绍了 802.15.4 mac layer pdu 形式与各 bit 含义</p>
 <br>
 
-<h2 id="General-MAC-frame-format"><a href="#General-MAC-frame-format" class="headerlink" title="General MAC frame format"></a>General MAC frame format</h2><center><img src="/../images/802-15-4-mac-frm/1_general_format.png" alt="frm_type" width="800px"></center>
+<h2 id="General-MAC-frame-format"><a href="#General-MAC-frame-format" class="headerlink" title="General MAC frame format"></a>General MAC frame format</h2><center><img src="/../images/802-15-4-mac-frm/1_general_format.png" width="800px"></center>
 
 
 <hr>
-<h4 id="frm-control"><a href="#frm-control" class="headerlink" title="frm control"></a>frm control</h4><table>
+<h3 id="frm-control"><a href="#frm-control" class="headerlink" title="frm control"></a>frm control</h3><table>
 <thead>
 <tr>
 <th>Bits</th>
@@ -335,7 +335,8 @@
 <td>Frame Version</td>
 </tr>
 </tbody></table>
-<h5 id="mac-frm-type"><a href="#mac-frm-type" class="headerlink" title="mac frm type"></a>mac frm type</h5><table>
+<hr>
+<h3 id="mac-frm-type"><a href="#mac-frm-type" class="headerlink" title="mac frm type"></a>mac frm type</h3><table>
 <thead>
 <tr>
 <th>b2</th>
@@ -393,7 +394,8 @@
 <td>Extended</td>
 </tr>
 </tbody></table>
-<h5 id="Security-Enabled"><a href="#Security-Enabled" class="headerlink" title="Security Enabled"></a>Security Enabled</h5><h3 id="Security-Enabled-字段解析"><a href="#Security-Enabled-字段解析" class="headerlink" title="Security Enabled 字段解析"></a>Security Enabled 字段解析</h3><h4 id="字段功能"><a href="#字段功能" class="headerlink" title="字段功能"></a>字段功能</h4><p><code>Security Enabled</code> 字段用于指示 MAC 子层是否对该帧进行了安全保护。</p>
+<hr>
+<h3 id="Security-Enabled-字段解析"><a href="#Security-Enabled-字段解析" class="headerlink" title="Security Enabled 字段解析"></a>Security Enabled 字段解析</h3><h4 id="字段功能"><a href="#字段功能" class="headerlink" title="字段功能"></a>字段功能</h4><p><code>Security Enabled</code> 字段用于指示 MAC 子层是否对该帧进行了安全保护。</p>
 <ul>
 <li>若 <code>Security Enabled = 1</code>，表示该帧已启用安全保护。MAC 帧头（MHR）中必须包含 <strong>Auxiliary Security Header</strong>。  </li>
 <li>若 <code>Security Enabled = 0</code>，表示该帧未启用安全保护。MAC 帧头中不包含辅助安全头。</li>
@@ -414,9 +416,7 @@
 <td>未启用安全保护，帧头不包含辅助安全头</td>
 </tr>
 </tbody></table>
-<br>
----
-
+<hr>
 <h3 id="Frame-Pending-字段解析"><a href="#Frame-Pending-字段解析" class="headerlink" title="Frame Pending 字段解析"></a>Frame Pending 字段解析</h3><h4 id="字段功能-1"><a href="#字段功能-1" class="headerlink" title="字段功能"></a>字段功能</h4><p><code>Frame Pending</code> 字段用于指示发送设备是否有更多数据等待发送给接收设备。  </p>
 <ul>
 <li>若 <code>Frame Pending = 1</code>，表示发送设备仍有数据待发送。  </li>
@@ -451,9 +451,7 @@
 <td>发送设备无待发送数据，接收设备可进入低功耗模式</td>
 </tr>
 </tbody></table>
-<br>
----
-
+<hr>
 <h3 id="AR-字段解析"><a href="#AR-字段解析" class="headerlink" title="AR 字段解析"></a>AR 字段解析</h3><h4 id="字段功能-2"><a href="#字段功能-2" class="headerlink" title="字段功能"></a>字段功能</h4><p><code>AR</code>（Acknowledgment Request，确认请求）字段用于指定接收设备在收到数据帧（Data Frame）或 MAC 命令帧（MAC Command Frame）后，是否需要发送确认帧（Ack Frame）。</p>
 <h4 id="字段规则"><a href="#字段规则" class="headerlink" title="字段规则"></a>字段规则</h4><h5 id="AR-1（需要确认）"><a href="#AR-1（需要确认）" class="headerlink" title="AR &#x3D; 1（需要确认）"></a>AR &#x3D; 1（需要确认）</h5><ul>
 <li>接收设备在成功接收帧后，必须发送 Ack 确认帧，前提是该帧通过了帧过滤（参考 6.7.2 章节）。</li>
@@ -485,9 +483,7 @@
 <td>广播帧，非关键数据，低功耗场景</td>
 </tr>
 </tbody></table>
-<br>
----
-
+<hr>
 <h3 id="PAN-ID-Compression-字段解析"><a href="#PAN-ID-Compression-字段解析" class="headerlink" title="PAN ID Compression 字段解析"></a>PAN ID Compression 字段解析</h3><h4 id="字段作用"><a href="#字段作用" class="headerlink" title="字段作用"></a>字段作用</h4><p><code>PAN ID Compression</code> 字段用于指示 <strong>PAN ID（个人区域网络标识）</strong> 是否包含在 MAC 帧中，以减少数据开销。</p>
 <h4 id="解析规则"><a href="#解析规则" class="headerlink" title="解析规则"></a>解析规则</h4><ul>
 <li><p>当 <strong>帧版本（Frame Version）字段值</strong> 为 <code>0b00</code> 或 <code>0b01</code> 时：</p>
@@ -636,8 +632,236 @@
 </tr>
 </tbody></table>
 <p>该字段的使用可以有效减少 MAC 帧长度，优化网络通信效率。📡</p>
-<br>
----
+<hr>
+<h3 id="Sequence-Number-Suppression-字段"><a href="#Sequence-Number-Suppression-字段" class="headerlink" title="Sequence Number Suppression 字段"></a>Sequence Number Suppression 字段</h3><h4 id="字段作用-1"><a href="#字段作用-1" class="headerlink" title="字段作用"></a>字段作用</h4><p><code>Sequence Number Suppression</code> 字段用于指示是否压制帧中的 <strong>Sequence Number（序列号）</strong> 字段。</p>
+<h4 id="解析规则-1"><a href="#解析规则-1" class="headerlink" title="解析规则"></a>解析规则</h4><ul>
+<li><p>当 <strong>Sequence Number Suppression</strong> 字段设置为 <code>1</code> 时：</p>
+<ul>
+<li>表示 <strong>序列号字段被压制</strong>，即帧中将 <strong>省略序列号</strong>。</li>
+</ul>
+</li>
+<li><p>当 <strong>Sequence Number Suppression</strong> 字段设置为 <code>0</code> 时：</p>
+<ul>
+<li>表示 <strong>序列号字段存在</strong>，即帧中将包含 <strong>序列号</strong> 字段。</li>
+</ul>
+</li>
+<li><p><strong>特殊情况：</strong></p>
+<ul>
+<li>如果 <strong>Frame Version（帧版本）字段</strong> 的值为 <code>0b00</code> 或 <code>0b01</code>，则 <code>Sequence Number Suppression</code> 字段必须为 <code>0</code>，即 <strong>序列号字段必须存在</strong>。</li>
+</ul>
+</li>
+</ul>
+<h4 id="总结-4"><a href="#总结-4" class="headerlink" title="总结"></a>总结</h4><table>
+<thead>
+<tr>
+<th>Sequence Number Suppression 值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>序列号字段被压制，省略序列号</td>
+</tr>
+<tr>
+<td>0</td>
+<td>序列号字段存在</td>
+</tr>
+</tbody></table>
+<p>此字段的设置可以根据特定的应用需求决定是否在帧中传输序列号。📦</p>
+<hr>
+<h3 id="IE-Present-字段"><a href="#IE-Present-字段" class="headerlink" title="IE Present 字段"></a>IE Present 字段</h3><h4 id="字段作用-2"><a href="#字段作用-2" class="headerlink" title="字段作用"></a>字段作用</h4><p><code>IE Present</code> 字段用于指示帧中是否包含 <strong>Information Elements (IEs)</strong>。</p>
+<h4 id="解析规则-2"><a href="#解析规则-2" class="headerlink" title="解析规则"></a>解析规则</h4><ul>
+<li><p>当 <strong>IE Present</strong> 字段设置为 <code>1</code> 时：</p>
+<ul>
+<li>表示帧中包含 <strong>Information Elements (IEs)</strong>。</li>
+</ul>
+</li>
+<li><p>当 <strong>IE Present</strong> 字段设置为 <code>0</code> 时：</p>
+<ul>
+<li>表示帧中不包含 <strong>Information Elements (IEs)</strong>。</li>
+</ul>
+</li>
+<li><p><strong>特殊情况：</strong></p>
+<ul>
+<li>如果 <strong>Frame Version（帧版本）字段</strong> 的值为 <code>0b00</code> 或 <code>0b01</code>，则 <code>IE Present</code> 字段必须为 <code>0</code>，即帧中不包含 IEs。</li>
+</ul>
+</li>
+</ul>
+<h4 id="总结-5"><a href="#总结-5" class="headerlink" title="总结"></a>总结</h4><table>
+<thead>
+<tr>
+<th>IE Present 值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>帧中包含 IEs</td>
+</tr>
+<tr>
+<td>0</td>
+<td>帧中不包含 IEs</td>
+</tr>
+</tbody></table>
+<p>此字段的设置对于确定帧的内容和处理方式非常重要。📦</p>
+<hr>
+<h3 id="Destination-Addressing-Mode-字段"><a href="#Destination-Addressing-Mode-字段" class="headerlink" title="Destination Addressing Mode 字段"></a>Destination Addressing Mode 字段</h3><h4 id="字段作用-3"><a href="#字段作用-3" class="headerlink" title="字段作用"></a>字段作用</h4><p><code>Destination Addressing Mode</code> 字段用于指定帧的目标地址模式。此字段的值可以根据不同的帧类型和版本来决定帧的地址格式。</p>
+<h4 id="解析规则-3"><a href="#解析规则-3" class="headerlink" title="解析规则"></a>解析规则</h4><ul>
+<li><p><strong>Destination Addressing Mode</strong> 字段应设置为 <strong>Table 7-3</strong> 中列出的值之一。</p>
+</li>
+<li><p>如果 <strong>Destination Addressing Mode</strong> 字段的值为 <code>0</code> 且 <strong>Frame Type（帧类型）字段</strong> 指定为 <strong>Data frame</strong> 或 <strong>MAC command</strong> 且 <strong>Frame Version（帧版本）字段</strong> 为 <code>0b00</code> 或 <code>0b01</code>：</p>
+<ul>
+<li><strong>Source Addressing Mode（源地址模式）字段</strong> 必须为非零值，表示帧是发送给 <strong>PAN coordinator</strong>，并且帧中的 <strong>Source PAN ID</strong> 字段指定了 PAN ID。</li>
+</ul>
+</li>
+<li><p>对于帧版本为 <code>0b10</code> 的情况：</p>
+<ul>
+<li><strong>Destination Address</strong> 或 <strong>Destination PAN ID</strong> 或两者可能会被省略。</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>b1</th>
+<th>b0</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>PAN ID and address fields are not present.</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>Reserved</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>Address field contains a short address (16 bit).</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>Address field contains an extended address (64 bit).</td>
+</tr>
+</tbody></table>
+<h4 id="总结-6"><a href="#总结-6" class="headerlink" title="总结"></a>总结</h4><table>
+<thead>
+<tr>
+<th>Destination Addressing Mode 值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>0</code></td>
+<td>指定源地址信息，并且帧是发送给 PAN 协调器。</td>
+</tr>
+<tr>
+<td>其他值</td>
+<td>由 Table 7-3 定义，决定目标地址模式。</td>
+</tr>
+</tbody></table>
+<p>此字段定义了如何在数据帧中表示目标地址，影响帧的传输和处理。📡</p>
+<hr>
+<h3 id="Frame-Version-字段"><a href="#Frame-Version-字段" class="headerlink" title="Frame Version 字段"></a>Frame Version 字段</h3><h4 id="字段作用-4"><a href="#字段作用-4" class="headerlink" title="字段作用"></a>字段作用</h4><p><code>Frame Version</code> 字段是一个无符号整数，用于指定与帧对应的版本号。所有帧类型都应按照各自子条款中描述的方式设置 <strong>Frame Version</strong> 字段。</p>
+<h4 id="版本总结"><a href="#版本总结" class="headerlink" title="版本总结"></a>版本总结</h4><ul>
+<li><strong>Frame Version</strong> 字段决定了帧的版本号。</li>
+<li>每种帧类型有不同的版本号要求，这些要求在 <strong>Table 7-4</strong> 中进行了总结。</li>
+</ul>
+<h4 id="版本适用性"><a href="#版本适用性" class="headerlink" title="版本适用性"></a>版本适用性</h4><p>每个帧类型的适用版本总结如下：</p>
+<table>
+<thead>
+<tr>
+<th>Frame Version</th>
+<th>适用的帧类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>0b00</code></td>
+<td>适用于特定帧类型，具体请参考 Table 7-4</td>
+</tr>
+<tr>
+<td><code>0b01</code></td>
+<td>适用于特定帧类型，具体请参考 Table 7-4</td>
+</tr>
+<tr>
+<td><code>0b10</code></td>
+<td>适用于特定帧类型，具体请参考 Table 7-4</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>Frame Type</th>
+<th>Frame Version 0b00</th>
+<th>Frame Version 0b01</th>
+<th>Frame Version 0b10</th>
+<th>Frame Version 0b11</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Beacon</td>
+<td>IEEE Std 802.15.4-2003</td>
+<td>IEEE Std 802.15.4-2006</td>
+<td>IEEE Std 802.15.4</td>
+<td>Reserved</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>IEEE Std 802.15.4-2003</td>
+<td>IEEE Std 802.15.4-2006</td>
+<td>IEEE Std 802.15.4</td>
+<td>Reserved</td>
+</tr>
+<tr>
+<td>Acknowledgment</td>
+<td>IEEE Std 802.15.4-2003</td>
+<td>IEEE Std 802.15.4-2006</td>
+<td>IEEE Std 802.15.4</td>
+<td>Reserved</td>
+</tr>
+<tr>
+<td>MAC Command</td>
+<td>IEEE Std 802.15.4-2003</td>
+<td>IEEE Std 802.15.4-2006</td>
+<td>IEEE Std 802.15.4</td>
+<td>Reserved</td>
+</tr>
+<tr>
+<td>Reserved</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Multipurpose</td>
+<td>IEEE Std 802.15.4</td>
+<td>Reserved</td>
+<td>Reserved</td>
+<td>Reserved</td>
+</tr>
+<tr>
+<td>Fragment</td>
+<td>Frame Version field not present in frame</td>
+<td>Frame Version field not present in frame</td>
+<td>Frame Version field not present in frame</td>
+<td>Frame Version field not present in frame</td>
+</tr>
+<tr>
+<td>Extended</td>
+<td>Frame Version field not present in frame</td>
+<td>Frame Version field not present in frame</td>
+<td>Frame Version field not present in frame</td>
+<td>Frame Version field not present in frame</td>
+</tr>
+</tbody></table>
+<h4 id="总结-7"><a href="#总结-7" class="headerlink" title="总结"></a>总结</h4><p><strong>Frame Version</strong> 字段指定了当前帧的版本，以便接收方可以正确解析和处理该帧。适用的版本和帧类型详细信息请查阅 <strong>Table 7-4</strong>。</p>
+
             </div>
         
         <footer class="article-footer">
