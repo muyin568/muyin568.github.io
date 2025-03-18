@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/1_general_format.png">
 <meta property="article:published_time" content="2025-03-10T11:23:52.000Z">
-<meta property="article:modified_time" content="2025-03-17T00:48:42.169Z">
+<meta property="article:modified_time" content="2025-03-18T00:01:09.716Z">
 <meta property="article:author" content="muyin">
 <meta property="article:tag" content="802.15.4">
 <meta name="twitter:card" content="summary">
@@ -400,11 +400,7 @@
 <hr style="border: 2px solid #000; margin: 20px 0;">
 
 <h3 id="Security-Enabled-字段解析"><a href="#Security-Enabled-字段解析" class="headerlink" title="Security Enabled 字段解析"></a>Security Enabled 字段解析</h3><h4 id="字段功能"><a href="#字段功能" class="headerlink" title="字段功能"></a>字段功能</h4><p><code>Security Enabled</code> 字段用于指示 MAC 子层是否对该帧进行了安全保护。</p>
-<ul>
-<li>若 <code>Security Enabled = 1</code>，表示该帧已启用安全保护。MAC 帧头（MHR）中必须包含 <strong>Auxiliary Security Header</strong>。  </li>
-<li>若 <code>Security Enabled = 0</code>，表示该帧未启用安全保护。MAC 帧头中不包含辅助安全头。</li>
-</ul>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><table>
+<table>
 <thead>
 <tr>
 <th>Security Enabled 值</th>
@@ -413,34 +409,17 @@
 </thead>
 <tbody><tr>
 <td>1</td>
-<td>启用 MAC 层安全保护，帧头包含辅助安全头</td>
+<td>启用 MAC 层安全保护，帧头包含<strong>Auxiliary Security Header</strong></td>
 </tr>
 <tr>
 <td>0</td>
-<td>未启用安全保护，帧头不包含辅助安全头</td>
+<td>未启用安全保护，帧头不包含<strong>Auxiliary Security Header</strong></td>
 </tr>
 </tbody></table>
 <hr style="border: 2px solid #000; margin: 20px 0;">
 
 <h3 id="Frame-Pending-字段解析"><a href="#Frame-Pending-字段解析" class="headerlink" title="Frame Pending 字段解析"></a>Frame Pending 字段解析</h3><h4 id="字段功能-1"><a href="#字段功能-1" class="headerlink" title="字段功能"></a>字段功能</h4><p><code>Frame Pending</code> 字段用于指示发送设备是否有更多数据等待发送给接收设备。  </p>
-<ul>
-<li>若 <code>Frame Pending = 1</code>，表示发送设备仍有数据待发送。  </li>
-<li>若 <code>Frame Pending = 0</code>，表示当前无待发送数据。</li>
-</ul>
-<h4 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h4><h5 id="信标帧（Beacon-Frame）"><a href="#信标帧（Beacon-Frame）" class="headerlink" title="信标帧（Beacon Frame）"></a>信标帧（Beacon Frame）</h5><ul>
-<li>仅在信标帧（Beacon Frame）或在 <strong>信标使能 PAN</strong>（beacon-enabled PAN）内的 <strong>CAP 时段</strong> 发送的数据帧中使用。  </li>
-<li>在 <strong>非信标使能 PAN</strong>（nonbeacon-enabled PAN）中，可在任意时间使用该字段。</li>
-</ul>
-<h5 id="低能耗（LE）CSL-模式"><a href="#低能耗（LE）CSL-模式" class="headerlink" title="低能耗（LE）CSL 模式"></a>低能耗（LE）CSL 模式</h5><ul>
-<li>若 <code>Frame Pending = 1</code>，表示发送设备仍有数据，并期望接收设备保持射频（RF）开启，直到 <code>Frame Pending</code> 变为 0。</li>
-</ul>
-<h5 id="TSCH-模式"><a href="#TSCH-模式" class="headerlink" title="TSCH 模式"></a>TSCH 模式</h5><ul>
-<li>若 <code>Frame Pending = 1</code>，表示接收设备在 <strong>下一时隙（timeslot）</strong> 仍需保持在线，并在相同信道等待数据（若当前无调度的链路）。</li>
-</ul>
-<h4 id="其他情况"><a href="#其他情况" class="headerlink" title="其他情况"></a>其他情况</h4><ul>
-<li>除上述情况外，<code>Frame Pending</code> 字段在 <strong>发送时应始终设为 0</strong>，接收时应忽略该字段。</li>
-</ul>
-<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><table>
+<table>
 <thead>
 <tr>
 <th>Frame Pending 值</th>
@@ -456,21 +435,23 @@
 <td>发送设备无待发送数据，接收设备可进入低功耗模式</td>
 </tr>
 </tbody></table>
+<h4 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h4><h5 id="信标帧（Beacon-Frame）"><a href="#信标帧（Beacon-Frame）" class="headerlink" title="信标帧（Beacon Frame）"></a>信标帧（Beacon Frame）</h5><ul>
+<li>仅在信标帧（Beacon Frame）或在 <strong>信标使能 PAN</strong>（beacon-enabled PAN）内的 <strong>CAP 时段</strong> 发送的数据帧中使用。  </li>
+<li>在 <strong>非信标使能 PAN</strong>（nonbeacon-enabled PAN）中，可在任意时间使用该字段。</li>
+</ul>
+<h5 id="低能耗（LE）CSL-模式"><a href="#低能耗（LE）CSL-模式" class="headerlink" title="低能耗（LE）CSL 模式"></a>低能耗（LE）CSL 模式</h5><ul>
+<li>若 <code>Frame Pending = 1</code>，表示发送设备仍有数据，并期望接收设备保持射频（RF）开启，直到 <code>Frame Pending</code> 变为 0。</li>
+</ul>
+<h5 id="TSCH-模式"><a href="#TSCH-模式" class="headerlink" title="TSCH 模式"></a>TSCH 模式</h5><ul>
+<li>若 <code>Frame Pending = 1</code>，表示接收设备在 <strong>下一时隙（timeslot）</strong> 仍需保持在线，并在相同信道等待数据（若当前无调度的链路）。</li>
+</ul>
+<h4 id="其他情况"><a href="#其他情况" class="headerlink" title="其他情况"></a>其他情况</h4><ul>
+<li>除上述情况外，<code>Frame Pending</code> 字段在 <strong>发送时应始终设为 0</strong>，接收时应忽略该字段。</li>
+</ul>
 <hr style="border: 2px solid #000; margin: 20px 0;">
 
 <h3 id="AR-字段解析"><a href="#AR-字段解析" class="headerlink" title="AR 字段解析"></a>AR 字段解析</h3><h4 id="字段功能-2"><a href="#字段功能-2" class="headerlink" title="字段功能"></a>字段功能</h4><p><code>AR</code>（Acknowledgment Request，确认请求）字段用于指定接收设备在收到数据帧（Data Frame）或 MAC 命令帧（MAC Command Frame）后，是否需要发送确认帧（Ack Frame）。</p>
-<h4 id="字段规则"><a href="#字段规则" class="headerlink" title="字段规则"></a>字段规则</h4><h5 id="AR-1（需要确认）"><a href="#AR-1（需要确认）" class="headerlink" title="AR &#x3D; 1（需要确认）"></a>AR &#x3D; 1（需要确认）</h5><ul>
-<li>接收设备在成功接收帧后，必须发送 Ack 确认帧，前提是该帧通过了帧过滤（参考 6.7.2 章节）。</li>
-<li>适用于可靠传输场景，例如关键控制指令（如 MAC 命令帧）或需要保证数据完整传输的数据帧。</li>
-</ul>
-<h5 id="AR-0（不需要确认）"><a href="#AR-0（不需要确认）" class="headerlink" title="AR &#x3D; 0（不需要确认）"></a>AR &#x3D; 0（不需要确认）</h5><ul>
-<li>接收设备不会发送 Ack 确认帧。</li>
-<li>适用于无需可靠传输的情况，例如广播帧（Broadcast Frame）或对数据丢失不敏感的应用场景。</li>
-</ul>
-<h4 id="AR-字段的影响"><a href="#AR-字段的影响" class="headerlink" title="AR 字段的影响"></a>AR 字段的影响</h4><h5 id="提高传输可靠性"><a href="#提高传输可靠性" class="headerlink" title="提高传输可靠性"></a>提高传输可靠性</h5><p>启用 AR，发送设备可以确保数据成功到达，否则会进行重传（如果支持）。</p>
-<h5 id="降低能耗"><a href="#降低能耗" class="headerlink" title="降低能耗"></a>降低能耗</h5><p>关闭 AR 可以减少额外的 Ack 传输，从而降低设备功耗，适用于低功耗 IoT 设备。</p>
-<h5 id="优化信道占用"><a href="#优化信道占用" class="headerlink" title="优化信道占用"></a>优化信道占用</h5><p>在高流量网络中，避免不必要的 Ack，可以减少信道竞争，提高整体通信效率。</p>
-<h4 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h4><table>
+<h4 id="字段规则"><a href="#字段规则" class="headerlink" title="字段规则"></a>字段规则</h4><table>
 <thead>
 <tr>
 <th>AR 值</th>
@@ -489,6 +470,9 @@
 <td>广播帧，非关键数据，低功耗场景</td>
 </tr>
 </tbody></table>
+<h4 id="AR-字段的影响"><a href="#AR-字段的影响" class="headerlink" title="AR 字段的影响"></a>AR 字段的影响</h4><h5 id="提高传输可靠性"><a href="#提高传输可靠性" class="headerlink" title="提高传输可靠性"></a>提高传输可靠性</h5><p>启用 AR，发送设备可以确保数据成功到达，否则会进行重传（如果支持）。</p>
+<h5 id="降低能耗"><a href="#降低能耗" class="headerlink" title="降低能耗"></a>降低能耗</h5><p>关闭 AR 可以减少额外的 Ack 传输，从而降低设备功耗，适用于低功耗 IoT 设备。</p>
+<h5 id="优化信道占用"><a href="#优化信道占用" class="headerlink" title="优化信道占用"></a>优化信道占用</h5><p>在高流量网络中，避免不必要的 Ack，可以减少信道竞争，提高整体通信效率。</p>
 <hr style="border: 2px solid #000; margin: 20px 0;">
 
 <h3 id="PAN-ID-Compression-字段解析"><a href="#PAN-ID-Compression-字段解析" class="headerlink" title="PAN ID Compression 字段解析"></a>PAN ID Compression 字段解析</h3><h4 id="字段作用"><a href="#字段作用" class="headerlink" title="字段作用"></a>字段作用</h4><p><code>PAN ID Compression</code> 字段用于指示 <strong>PAN ID（个人区域网络标识）</strong> 是否包含在 MAC 帧中，以减少数据开销。</p>
@@ -622,7 +606,7 @@
 <td>1</td>
 </tr>
 </tbody></table>
-<h4 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h4><table>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><table>
 <thead>
 <tr>
 <th>PAN ID Compression 值</th>
@@ -642,24 +626,7 @@
 <hr style="border: 2px solid #000; margin: 20px 0;">
 
 <h3 id="Sequence-Number-Suppression-字段"><a href="#Sequence-Number-Suppression-字段" class="headerlink" title="Sequence Number Suppression 字段"></a>Sequence Number Suppression 字段</h3><h4 id="字段作用-1"><a href="#字段作用-1" class="headerlink" title="字段作用"></a>字段作用</h4><p><code>Sequence Number Suppression</code> 字段用于指示是否压制帧中的 <strong>Sequence Number（序列号）</strong> 字段。</p>
-<h4 id="解析规则-1"><a href="#解析规则-1" class="headerlink" title="解析规则"></a>解析规则</h4><ul>
-<li><p>当 <strong>Sequence Number Suppression</strong> 字段设置为 <code>1</code> 时：</p>
-<ul>
-<li>表示 <strong>序列号字段被压制</strong>，即帧中将 <strong>省略序列号</strong>。</li>
-</ul>
-</li>
-<li><p>当 <strong>Sequence Number Suppression</strong> 字段设置为 <code>0</code> 时：</p>
-<ul>
-<li>表示 <strong>序列号字段存在</strong>，即帧中将包含 <strong>序列号</strong> 字段。</li>
-</ul>
-</li>
-<li><p><strong>特殊情况：</strong></p>
-<ul>
-<li>如果 <strong>Frame Version（帧版本）字段</strong> 的值为 <code>0b00</code> 或 <code>0b01</code>，则 <code>Sequence Number Suppression</code> 字段必须为 <code>0</code>，即 <strong>序列号字段必须存在</strong>。</li>
-</ul>
-</li>
-</ul>
-<h4 id="总结-4"><a href="#总结-4" class="headerlink" title="总结"></a>总结</h4><table>
+<table>
 <thead>
 <tr>
 <th>Sequence Number Suppression 值</th>
@@ -675,28 +642,16 @@
 <td>序列号字段存在</td>
 </tr>
 </tbody></table>
-<p>此字段的设置可以根据特定的应用需求决定是否在帧中传输序列号。📦</p>
+<ul>
+<li><strong>特殊情况：</strong><ul>
+<li>如果 <strong>Frame Version（帧版本）字段</strong> 的值为 <code>0b00</code> 或 <code>0b01</code>，则 <code>Sequence Number Suppression</code> 字段必须为 <code>0</code>，即 <strong>序列号字段必须存在</strong>。</li>
+</ul>
+</li>
+</ul>
 <hr style="border: 2px solid #000; margin: 20px 0;">
 
 <h3 id="IE-Present-字段"><a href="#IE-Present-字段" class="headerlink" title="IE Present 字段"></a>IE Present 字段</h3><h4 id="字段作用-2"><a href="#字段作用-2" class="headerlink" title="字段作用"></a>字段作用</h4><p><code>IE Present</code> 字段用于指示帧中是否包含 <strong>Information Elements (IEs)</strong>。</p>
-<h4 id="解析规则-2"><a href="#解析规则-2" class="headerlink" title="解析规则"></a>解析规则</h4><ul>
-<li><p>当 <strong>IE Present</strong> 字段设置为 <code>1</code> 时：</p>
-<ul>
-<li>表示帧中包含 <strong>Information Elements (IEs)</strong>。</li>
-</ul>
-</li>
-<li><p>当 <strong>IE Present</strong> 字段设置为 <code>0</code> 时：</p>
-<ul>
-<li>表示帧中不包含 <strong>Information Elements (IEs)</strong>。</li>
-</ul>
-</li>
-<li><p><strong>特殊情况：</strong></p>
-<ul>
-<li>如果 <strong>Frame Version（帧版本）字段</strong> 的值为 <code>0b00</code> 或 <code>0b01</code>，则 <code>IE Present</code> 字段必须为 <code>0</code>，即帧中不包含 IEs。</li>
-</ul>
-</li>
-</ul>
-<h4 id="总结-5"><a href="#总结-5" class="headerlink" title="总结"></a>总结</h4><table>
+<table>
 <thead>
 <tr>
 <th>IE Present 值</th>
@@ -712,11 +667,17 @@
 <td>帧中不包含 IEs</td>
 </tr>
 </tbody></table>
+<ul>
+<li><strong>特殊情况：</strong><ul>
+<li>如果 <strong>Frame Version（帧版本）字段</strong> 的值为 <code>0b00</code> 或 <code>0b01</code>，则 <code>IE Present</code> 字段必须为 <code>0</code>，即帧中不包含 IEs。</li>
+</ul>
+</li>
+</ul>
 <p>此字段的设置对于确定帧的内容和处理方式非常重要。📦</p>
 <hr style="border: 2px solid #000; margin: 20px 0;">
 
 <h3 id="Destination-Addressing-Mode-字段"><a href="#Destination-Addressing-Mode-字段" class="headerlink" title="Destination Addressing Mode 字段"></a>Destination Addressing Mode 字段</h3><h4 id="字段作用-3"><a href="#字段作用-3" class="headerlink" title="字段作用"></a>字段作用</h4><p><code>Destination Addressing Mode</code> 字段用于指定帧的目标地址模式。此字段的值可以根据不同的帧类型和版本来决定帧的地址格式。</p>
-<h4 id="解析规则-3"><a href="#解析规则-3" class="headerlink" title="解析规则"></a>解析规则</h4><ul>
+<h4 id="解析规则-1"><a href="#解析规则-1" class="headerlink" title="解析规则"></a>解析规则</h4><ul>
 <li><p><strong>Destination Addressing Mode</strong> 字段应设置为 <strong>Table 7-3</strong> 中列出的值之一。</p>
 </li>
 <li><p>如果 <strong>Destination Addressing Mode</strong> 字段的值为 <code>0</code> 且 <strong>Frame Type（帧类型）字段</strong> 指定为 <strong>Data frame</strong> 或 <strong>MAC command</strong> 且 <strong>Frame Version（帧版本）字段</strong> 为 <code>0b00</code> 或 <code>0b01</code>：</p>
@@ -759,7 +720,7 @@
 <td>Address field contains an extended address (64 bit).</td>
 </tr>
 </tbody></table>
-<h4 id="总结-6"><a href="#总结-6" class="headerlink" title="总结"></a>总结</h4><table>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><table>
 <thead>
 <tr>
 <th>Destination Addressing Mode 值</th>
@@ -871,7 +832,89 @@
 <td>Frame Version field not present in frame</td>
 </tr>
 </tbody></table>
-<h4 id="总结-7"><a href="#总结-7" class="headerlink" title="总结"></a>总结</h4><p><strong>Frame Version</strong> 字段指定了当前帧的版本，以便接收方可以正确解析和处理该帧。适用的版本和帧类型详细信息请查阅 <strong>Table 7-4</strong>。</p>
+<hr style="border: 2px solid #000; margin: 20px 0;">
+
+<h3 id="Source-Addressing-Mode-field"><a href="#Source-Addressing-Mode-field" class="headerlink" title="Source Addressing Mode field"></a>Source Addressing Mode field</h3><ul>
+<li><strong>Source Addressing Mode</strong> 字段的值应设置为 <strong>Table 7-3</strong> 中列出的值之一。</li>
+<li>当该字段为 <code>0</code> 且 <strong>Frame Type</strong> 字段指定为 <strong>Data frame</strong> 或 <strong>MAC command</strong>，并且 <strong>Frame Version</strong> 字段为 <code>0b00</code> 或 <code>0b01</code>，则 <strong>Destination Addressing Mode</strong> 字段必须为非零。</li>
+<li>这种情况下，意味着该帧源自 <strong>PAN coordinator</strong>，其 <strong>PAN ID</strong> 由 <strong>Destination PAN ID</strong> 字段指定。</li>
+</ul>
+<hr>
+<h3 id="Sequence-Number-field"><a href="#Sequence-Number-field" class="headerlink" title="Sequence Number field"></a>Sequence Number field</h3><ul>
+<li><strong>Sequence Number</strong> 字段用于指定该帧的序列标识符。</li>
+<li>对于 <strong>Beacon frame</strong>，该字段指定 <strong>BSN (Beacon Sequence Number)</strong>。</li>
+<li>对于其他帧，该字段指定 <strong>DSN (Data Sequence Number)</strong>。</li>
+</ul>
+<hr>
+<h3 id="Destination-PAN-ID-field"><a href="#Destination-PAN-ID-field" class="headerlink" title="Destination PAN ID field"></a>Destination PAN ID field</h3><ul>
+<li><strong>Destination PAN ID</strong> 字段（如果存在）是一个无符号整数，指定目标设备所在的 <strong>PAN ID</strong>。</li>
+<li>如果该字段的值为 <strong>广播 PAN ID</strong>（定义见 6.1），则所有当前监听该信道的设备都将其视为有效 <strong>PAN ID</strong>。</li>
+</ul>
+<hr>
+<h3 id="Destination-Address-field"><a href="#Destination-Address-field" class="headerlink" title="Destination Address field"></a>Destination Address field</h3><ul>
+<li><strong>Destination Address</strong> 字段（如果存在）用于指定帧的接收者地址。</li>
+<li>其长度由 <strong>Frame Control</strong> 字段的 <strong>Destination Addressing Mode</strong>（见 7.2.1.8）决定。</li>
+<li>如果该字段的值为 <strong>广播短地址</strong>（定义见 6.1），则所有当前监听该信道的设备都将其视为有效地址。</li>
+<li>该字段仅在 <strong>Destination Addressing Mode</strong> 字段非零时才包含在 MAC 帧中。</li>
+</ul>
+<hr>
+<h3 id="Source-PAN-ID-field"><a href="#Source-PAN-ID-field" class="headerlink" title="Source PAN ID field"></a>Source PAN ID field</h3><ul>
+<li><strong>Source PAN ID</strong> 字段（如果存在）用于指定该帧的发送者所属于的 <strong>PAN ID</strong>。</li>
+<li>设备的 <strong>PAN ID</strong> 初始由其加入 <strong>PAN</strong> 时决定，但可能会因 <strong>PAN ID 冲突解决</strong>（见 6.3.2）而发生变化。</li>
+</ul>
+<hr>
+<h3 id="Source-Address-field"><a href="#Source-Address-field" class="headerlink" title="Source Address field"></a>Source Address field</h3><ul>
+<li><strong>Source Address</strong> 字段（如果存在）用于指定该帧的发送者地址。</li>
+<li>该字段仅在 <strong>Source Addressing Mode</strong> 字段非零时才包含在 <strong>MAC 帧</strong> 中。</li>
+</ul>
+<hr>
+<h3 id="Auxiliary-Security-Header-field"><a href="#Auxiliary-Security-Header-field" class="headerlink" title="Auxiliary Security Header field"></a>Auxiliary Security Header field</h3><ul>
+<li><strong>Auxiliary Security Header</strong> 字段包含用于 <strong>安全处理</strong> 所需的信息。</li>
+<li>该字段仅在 <strong>Security Enabled</strong> 字段设为 <code>1</code> 时才会存在。</li>
+<li><strong>Auxiliary Security Header</strong> 字段的格式详见 <strong>9.4</strong>。</li>
+</ul>
+<hr>
+<h3 id="IE-Field"><a href="#IE-Field" class="headerlink" title="IE Field"></a>IE Field</h3><ul>
+<li><strong>IE（Information Element）字段</strong> 为可变长度，包含一个或多个 <strong>IE</strong>。</li>
+<li>由 <strong>Header IE</strong> 和 <strong>Payload IE</strong> 子字段组成。</li>
+<li>该字段仅在 <strong>Frame Control</strong> 字段中的 <strong>IE Present</strong> 设为 <code>1</code> 时才会存在。</li>
+<li>每个 <strong>IE</strong> 由 <strong>描述符（descriptor）</strong> 和 <strong>可选负载（optional payload）</strong> 组成，具体描述见 <strong>7.4</strong>。</li>
+</ul>
+<h4 id="Header-IE"><a href="#Header-IE" class="headerlink" title="Header IE"></a>Header IE</h4><ul>
+<li><strong>Header IE</strong>（如果存在）位于 <strong>Auxiliary Security Header</strong> 之后，属于 <strong>MHR（MAC Header）</strong>。</li>
+</ul>
+<h4 id="Payload-IE"><a href="#Payload-IE" class="headerlink" title="Payload IE"></a>Payload IE</h4><ul>
+<li><strong>Payload IE</strong>（如果存在）位于 <strong>MHR</strong> 之后，属于 <strong>MAC payload</strong>，即 <strong>Payload IE</strong> 可能被加密。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Octets</th>
+<th>Variable … Variable</th>
+<th>0&#x2F;2</th>
+<th>Variable … Variable</th>
+<th>0&#x2F;2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Field</td>
+<td>Header IE #1 … Header IE #n</td>
+<td>Header Termination IE</td>
+<td>Payload IE #1 … Payload IE #m</td>
+<td>Payload Termination IE</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="7-2-9-Frame-Payload-Field"><a href="#7-2-9-Frame-Payload-Field" class="headerlink" title="7.2.9 Frame Payload Field"></a>7.2.9 Frame Payload Field</h3><ul>
+<li><strong>Frame Payload 字段</strong> 包含特定于各帧类型的信息。</li>
+<li>如果 <strong>Security Enabled</strong> 字段设为 <code>1</code>，则 <strong>Frame Payload</strong> 可能受到 <strong>加密保护</strong>，详见 <strong>Clause 9</strong>。</li>
+</ul>
+<hr>
+<h3 id="7-2-10-FCS-Field"><a href="#7-2-10-FCS-Field" class="headerlink" title="7.2.10 FCS Field"></a>7.2.10 FCS Field</h3><ul>
+<li><strong>FCS（Frame Check Sequence）字段</strong> 包含一个 <strong>16-bit ITU-T CRC</strong> 或 <strong>32-bit CRC</strong>（符合 <strong>ANSI X3.66-1979.13</strong>）。</li>
+<li><strong>FCS 计算范围</strong> 包括 <strong>MHR</strong> 和 <strong>MAC Payload</strong>，统称为 <strong>计算字段（Calculation Field）</strong>。</li>
+<li>兼容 <strong>SUN PHYs</strong> 或 <strong>TVWS PHYs</strong> 的设备必须实现 <strong>4-octet FCS</strong>。</li>
+</ul>
 
             </div>
         
