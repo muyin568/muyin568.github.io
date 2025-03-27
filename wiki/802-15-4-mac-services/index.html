@@ -3,19 +3,26 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Category: 技术杂谈 | muyin568</title>
+    <title>802-15-4-mac-services | muyin568</title>
     
     
-        <meta name="keywords" content="muyin568">
+        <meta name="keywords" content="802.15.4">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta property="og:type" content="website">
-<meta property="og:title" content="muyin568">
-<meta property="og:url" content="http://example.com/categories/%E6%8A%80%E6%9C%AF%E6%9D%82%E8%B0%88/index.html">
+    <meta name="description" content="以 drawio 流程图的形式介绍了 802.15.4(2015) mac layer 的加解密，主要有：incoming frm dec, outcoming frm enc, secure related PIBs。     MAC 层（媒体访问控制层）负责协调设备之间的无线通信，并分为两个主要子层：	1.	MAC 层管理实体（MLME, MAC Layer Management Entity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="802-15-4-mac-services">
+<meta property="og:url" content="http://example.com/wiki/802-15-4-mac-services/index.html">
 <meta property="og:site_name" content="muyin568">
+<meta property="og:description" content="以 drawio 流程图的形式介绍了 802.15.4(2015) mac layer 的加解密，主要有：incoming frm dec, outcoming frm enc, secure related PIBs。     MAC 层（媒体访问控制层）负责协调设备之间的无线通信，并分为两个主要子层：	1.	MAC 层管理实体（MLME, MAC Layer Management Entity">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/11_mac_services.png">
+<meta property="article:published_time" content="2025-03-27T00:35:47.000Z">
+<meta property="article:modified_time" content="2025-03-27T01:02:28.419Z">
 <meta property="article:author" content="muyin">
+<meta property="article:tag" content="802.15.4">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/802-15-4-mac-frm/11_mac_services.png">
     
 
     
@@ -164,13 +171,13 @@
         
         
          <ul class="unstyled" id="tree"> 
-                    <li class="directory">
+                    <li class="directory open">
                         <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
+                            <i class="fa fa-folder-open"></i>
                             &nbsp;
                             802.15.4
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/802-15-4-sec-related/">802.15.4-sec_related</a></li>  <li class="file"><a href="/wiki/802-15-4-mac-frm/">802.15.4 ~ mac_frm ~ general review</a></li>  <li class="file"><a href="/wiki/802-15-4-mac-services/">802-15-4-mac-services</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/802-15-4-sec-related/">802.15.4-sec_related</a></li>  <li class="file"><a href="/wiki/802-15-4-mac-frm/">802.15.4 ~ mac_frm ~ general review</a></li>  <li class="file active"><a href="/wiki/802-15-4-mac-services/">802-15-4-mac-services</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -252,50 +259,161 @@
     <div id="toTop" class="fa fa-angle-up"></div>
 </aside>
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-folder"></i></span>
-        <h1 class="title">技术杂谈</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-802-15-4-mac-services" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/wiki/hexo-image-sync-my-solution/">hexo github.io image 显示异常</a>
-        </h1>
-    
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/802-15-4/">802.15.4</a>
+    </div>
 
-                <div class="article-meta">
-                    
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/802-15-4/" rel="tag">802.15.4</a>
+    </div>
+
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/wiki/hexo-image-sync-my-solution/">
-            <time datetime="2025-03-25T23:53:42.000Z" itemprop="datePublished">2025-03-26</time>
+        <a href="/wiki/802-15-4-mac-services/">
+            <time datetime="2025-03-27T00:35:47.000Z" itemprop="datePublished">2025-03-27</time>
         </a>
     </div>
 
 
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%9D%82%E8%B0%88/">技术杂谈</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/hexo/" rel="tag">hexo</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
+                        
+                        
+                    </div>
+                
+                
     
-</div>
+        <h1 class="article-title" itemprop="name">
+            802-15-4-mac-services
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">Catalogue</strong>
+                    
+                </div>
+            
+        
+        
+            <p>以 drawio 流程图的形式介绍了 802.15.4(2015) mac layer 的加解密，主要有：incoming frm dec, outcoming frm enc, secure related PIBs。</p>
+<hr style="border: 2px solid #000; margin: 20px 0;">
+
+<center><img src="/../images/802-15-4-mac-frm/11_mac_services.png" width="600px"></center>
+
+<p>MAC 层（媒体访问控制层）负责协调设备之间的无线通信，并分为两个主要子层：<br>	1.	MAC 层管理实体（<strong>MLME</strong>, MAC Layer Management Entity）<br>	2.	MAC 公共部分子层（<strong>MCPS</strong>, MAC Common Part Sublayer）</p>
+<hr>
+<p><strong>SAP 的概念</strong><br>在 <strong>IEEE 802.15.4</strong> 标准中，<strong>SAP（服务访问点）</strong> 是<strong>不同协议层之间的接口</strong>，用于<strong>数据传输和管理控制</strong>。<br>SAP 允许协议栈的不同层之间交换数据和命令，例如 <strong>MCPS-SAP</strong> 和 <strong>MLME-SAP</strong>。<br><br></p>
+<p><strong>SAP 的作用</strong><br>在协议栈中，不同层的功能不同，而 SAP 作为接口，提供标准化的交互方式，例如：</p>
+<ul>
+<li><strong>应用层 ↔️ 网络层</strong> 通过 <strong>NLDE-SAP（网络层数据实体 SAP）</strong> 交换数据。</li>
+<li><strong>网络层 ↔️ MAC 层</strong> 通过 <strong>NLME-SAP（网络层管理实体 SAP）</strong> 进行管理操作。</li>
+<li><strong>MAC 层 ↔️ 物理层</strong> 通过 <strong>PLME-SAP（物理层管理实体 SAP）</strong> 进行通信。</li>
+</ul>
+<br>
+
+<p><strong>802.15.4 中常见的 SAP</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>SAP 名称</strong></th>
+<th><strong>作用</strong></th>
+<th><strong>涉及层</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>MCPS-SAP</strong>（MAC Common Part Sublayer Service Access Point）</td>
+<td>处理 MAC 层<strong>数据传输</strong></td>
+<td>MAC 层 ↔️ 上层</td>
+</tr>
+<tr>
+<td><strong>MLME-SAP</strong>（MAC Layer Management Entity Service Access Point）</td>
+<td>处理 MAC 层<strong>管理功能</strong>（如信标、关联）</td>
+<td>MAC 层 ↔️ 上层</td>
+</tr>
+<tr>
+<td><strong>PLME-SAP</strong>（Physical Layer Management Entity Service Access Point）</td>
+<td>物理层<strong>管理</strong>（如信道设置）</td>
+<td>物理层 ↔️ MAC 层</td>
+</tr>
+<tr>
+<td><strong>PD-SAP</strong>（Physical Data Service Access Point）</td>
+<td>物理层<strong>数据传输</strong></td>
+<td>物理层 ↔️ MAC 层</td>
+</tr>
+</tbody></table>
+<br>
+
+<p><strong>SAP 的工作方式</strong><br>SAP 主要通过以下方式进行交互： ind + resp ; req + confirm</p>
+<ul>
+<li><p><strong>Indication（指示）</strong>：下层通知上层某个事件发生（如收到数据）。</p>
+</li>
+<li><p><strong>Response（响应）</strong>：上层对某个请求的回应（如关联请求的确认）。</p>
+</li>
+<li><p><strong>Request（请求）</strong>：上层请求下层执行某项操作（如发送数据）。</p>
+</li>
+<li><p><strong>Confirm（确认）</strong>：下层反馈请求的执行结果（如数据发送成功或失败）。</p>
+</li>
+</ul>
+<br>
+
+<p><strong>SAP 示例（MCPS-DATA 发送流程）</strong><br>假设一个设备要发送数据，SAP 交互流程如下：</p>
+<ol>
+<li><strong>上层调用</strong> <code>MCPS-DATA.request</code>，请求 MAC 层发送数据。  </li>
+<li><strong>MAC 层处理</strong> 该请求，并通过物理层发送数据。  </li>
+<li><strong>如果对方收到数据并回复 ACK</strong>，MAC 层生成 <code>MCPS-DATA.confirm</code> 反馈给上层，表示发送成功。  </li>
+<li><strong>如果对方未响应</strong>，MAC 层可能会重传，最终给出 <code>MCPS-DATA.confirm</code>，通知上层发送成功或失败。</li>
+</ol>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+    
+        <a href="/wiki/hexo-image-sync-my-solution/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">hexo github.io image 显示异常</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
 </section>
         </div>
         <footer id="footer">
