@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>802.15.4-mac_frm_genernal | MyWiki</title>
+    <title>802.15.4-mac_frm_genernal | muyin568</title>
     
     
         <meta name="keywords" content="802.15.4">
@@ -13,12 +13,19 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="802.15.4-mac_frm_genernal">
 <meta property="og:url" content="http://example.com/wiki/802-15-4-mac-frm/index.html">
-<meta property="og:site_name" content="MyWiki">
+<meta property="og:site_name" content="muyin568">
 <meta property="og:description" content="主要介绍了 802.15.4 mac layer pdu 形式与各 bit 含义   General MAC frame format      frm control   Bits 0–2 3 4–5 6 7 8 9 10–11 12–13 14–15    Field Frame Type Security Enabled Frame Pending AR PAN ID Compression">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/1_general_format.png">
+<meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/4_beacon_frm.png">
+<meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/5_data_frm.png">
+<meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/6_imm_ack.png">
+<meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/7_enh_ack.png">
+<meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/8_mac_cmd.png">
+<meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/9_multi.png">
+<meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/10_ext.png">
 <meta property="article:published_time" content="2025-03-10T11:23:52.000Z">
-<meta property="article:modified_time" content="2025-03-18T00:46:52.490Z">
+<meta property="article:modified_time" content="2025-03-27T00:19:53.228Z">
 <meta property="article:author" content="muyin">
 <meta property="article:tag" content="802.15.4">
 <meta name="twitter:card" content="summary">
@@ -26,7 +33,7 @@
     
 
     
-        <link rel="alternate" href="/atom.xml" title="MyWiki" type="application/atom+xml">
+        <link rel="alternate" href="/atom.xml" title="muyin568" type="application/atom+xml">
     
 
     
@@ -78,7 +85,7 @@
         <div class="outer">
             <a href="/" id="logo">
                 
-                <span class="site-title">MyWiki</span>
+                <span class="site-title">muyin568</span>
             </a>
             <nav id="main-nav">
                 
@@ -177,7 +184,7 @@
                             &nbsp;
                             802.15.4
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/802-15-4-sec-related/">802.15.4-sec_related</a></li>  <li class="file active"><a href="/wiki/802-15-4-mac-frm/">802.15.4-mac_frm_genernal</a></li>  <li class="file"><a href="/wiki/802-15-4-mac-frm-individual/">802.15.4-mac_frm_individual</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/802-15-4-sec-related/">802.15.4-sec_related</a></li>  <li class="file active"><a href="/wiki/802-15-4-mac-frm/">802.15.4-mac_frm_genernal</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -924,7 +931,200 @@
 <li><strong>FCS 计算范围</strong> 包括 <strong>MHR</strong> 和 <strong>MAC Payload</strong>，统称为 <strong>计算字段（Calculation Field）</strong>。</li>
 <li>兼容 <strong>SUN PHYs</strong> 或 <strong>TVWS PHYs</strong> 的设备必须实现 <strong>4-octet FCS</strong>。</li>
 </ul>
+<hr style="border: 2px solid #000; margin: 20px 0;">
 
+<h3 id="7-4-1-IE-List-Termination"><a href="#7-4-1-IE-List-Termination" class="headerlink" title="7.4.1 IE List Termination"></a>7.4.1 IE List Termination</h3><h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><ul>
+<li>在确定 <strong>Header IEs</strong> 或 <strong>Payload IEs</strong> 是否需要终止时，<strong>不考虑</strong> 认证或加密过程。</li>
+<li><strong>下面的table</strong> 规定了 terminate IE ：<ul>
+<li><strong>HT1</strong>（Header Termination 1 IE），定义见 <strong>7.4.2.17</strong>。</li>
+<li><strong>HT2</strong>（Header Termination 2 IE），定义见 <strong>7.4.2.18</strong>。</li>
+</ul>
+</li>
+</ul>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><blockquote>
+<p><strong>Header Termination IE 必须出现在 Payload IEs 之前</strong>，因为 <strong>Header IEs</strong> 和 <strong>Payload IEs</strong> <strong>共享地址空间</strong>，无法直接区分二者的边界。因此，需要使用 <strong>Header Termination IE</strong> 来标识 <strong>Header IEs 的结束</strong> 和 <strong>Payload IEs 的开始</strong>。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Header IEs Present</th>
+<th>Payload IEs Present</th>
+<th>Data Payload Present</th>
+<th>Header Termination IE Included</th>
+<th>Payload Termination IE Included</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>None</td>
+<td>None</td>
+<td>No IE lists present, hence no termination. Included here for completeness.</td>
+</tr>
+<tr>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>None</td>
+<td>None</td>
+<td>No termination is required because the end of the frame can be determined from the frame length and FCS length.</td>
+</tr>
+<tr>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+<td>HT1 required</td>
+<td>Optional</td>
+<td>Header Termination IE 1 is required to signal end of the MHR and beginning of the Payload IE list.</td>
+</tr>
+<tr>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>HT1 required</td>
+<td>Optional</td>
+<td>Header Termination IE 1 is required while the Payload IE Termination is not required, but is allowed.</td>
+</tr>
+<tr>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+<td>None</td>
+<td>None</td>
+<td>No IE lists present, hence no termination. Included here for completeness.</td>
+</tr>
+<tr>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>HT2 required</td>
+<td>None</td>
+<td>Header Termination IE 2 is used to signal end of the MHR and beginning of the MAC Payload.</td>
+</tr>
+<tr>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>HT1 required</td>
+<td>Required</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>HT1 required</td>
+<td>Required</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<hr>
+<h5 id="header-ie"><a href="#header-ie" class="headerlink" title="header ie"></a>header ie</h5><p>HT1 &#x2F; HT2 ie 也使用了下表的格式，只不过 content len &#x3D; 0, ElementID &#x3D; 0x7E&#x2F;7F;</p>
+<p>Element ID 的使用，直接就代表了具体的 header ie,  而 payload IE 中的 Group ID 则代表了更多无限的可能 ～ Group 下还有 Nest IE ～ sub-ID</p>
+<table>
+<thead>
+<tr>
+<th>Bits</th>
+<th>0–6</th>
+<th>7–14</th>
+<th>15</th>
+<th>0–127</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Field</td>
+<td>Length</td>
+<td>Element ID</td>
+<td>Type &#x3D; 0</td>
+<td>Content</td>
+</tr>
+</tbody></table>
+<h5 id="payload-ie"><a href="#payload-ie" class="headerlink" title="payload ie"></a>payload ie</h5><table>
+<thead>
+<tr>
+<th>Bits</th>
+<th>0–10</th>
+<th>11–14</th>
+<th>15</th>
+<th>0–2047</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Field</td>
+<td>Length</td>
+<td>Group ID</td>
+<td>Type &#x3D; 1</td>
+<td>Content</td>
+</tr>
+</tbody></table>
+<h6 id="nested-short-long-ie-payload-ie-group-Id-mlme-0x1"><a href="#nested-short-long-ie-payload-ie-group-Id-mlme-0x1" class="headerlink" title="nested short&#x2F;long ie ~ payload ie ~ group Id &#x3D; mlme(0x1)"></a>nested short&#x2F;long ie ~ payload ie ~ group Id &#x3D; mlme(0x1)</h6><p>nested ie 下又分出了很多 sub id ie</p>
+<table>
+<thead>
+<tr>
+<th>Bits</th>
+<th>0–7</th>
+<th>8–14</th>
+<th>15</th>
+<th>0–255</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Field</td>
+<td>Length</td>
+<td>Sub-ID</td>
+<td>Type &#x3D; 0</td>
+<td>Content</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>Bits</th>
+<th>0–10</th>
+<th>11–14</th>
+<th>15</th>
+<th>0–2047</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Field</td>
+<td>Length</td>
+<td>Sub-ID</td>
+<td>Type &#x3D; 0</td>
+<td>Content</td>
+</tr>
+</tbody></table>
+<hr style="border: 2px solid #000; margin: 20px 0;">
+<hr style="border: 2px solid #000; margin: 20px 0;">
+
+<p>主要介绍了 802.15.4 具体的 frm type 对应的 mac frm formats</p>
+<hr style="border: 2px solid #000; margin: 20px 0;">
+
+<h3 id="beacon-frm"><a href="#beacon-frm" class="headerlink" title="beacon frm"></a>beacon frm</h3><center><img src="/../images/802-15-4-mac-frm/4_beacon_frm.png" width="800px"></center>
+
+<hr style="border: 2px solid #000; margin: 20px 0;">
+
+<h3 id="data-frm"><a href="#data-frm" class="headerlink" title="data frm"></a>data frm</h3><center><img src="/../images/802-15-4-mac-frm/5_data_frm.png" width="800px"></center>
+
+<hr style="border: 2px solid #000; margin: 20px 0;">
+
+<h3 id="ack-frm"><a href="#ack-frm" class="headerlink" title="ack frm"></a>ack frm</h3><center><img src="/../images/802-15-4-mac-frm/6_imm_ack.png" width="400px"></center>
+
+<center><img src="/../images/802-15-4-mac-frm/7_enh_ack.png" width="800px"></center>
+
+<hr style="border: 2px solid #000; margin: 20px 0;">
+
+<h3 id="mac-cmd-frm"><a href="#mac-cmd-frm" class="headerlink" title="mac cmd frm"></a>mac cmd frm</h3><center><img src="/../images/802-15-4-mac-frm/8_mac_cmd.png" width="800px"></center>
+
+<hr style="border: 2px solid #000; margin: 20px 0;">
+
+<h3 id="multipurpose-frm"><a href="#multipurpose-frm" class="headerlink" title="multipurpose frm"></a>multipurpose frm</h3><center><img src="/../images/802-15-4-mac-frm/9_multi.png" width="800px"></center>
+
+<hr style="border: 2px solid #000; margin: 20px 0;">
+
+<h3 id="ext-frm"><a href="#ext-frm" class="headerlink" title="ext frm"></a>ext frm</h3><center><img src="/../images/802-15-4-mac-frm/10_ext.png" width="600px"></center>
             </div>
         
         <footer class="article-footer">
@@ -936,11 +1136,11 @@
     
 <nav id="article-nav">
     
-        <a href="/wiki/802-15-4-mac-frm-individual/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/wiki/hexo-image-sync-my-solution/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">Newer</strong>
             <div class="article-nav-title">
                 
-                    802.15.4-mac_frm_individual
+                    hexo github.io image 显示异常
                 
             </div>
         </a>
