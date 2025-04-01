@@ -9,17 +9,22 @@
         <meta name="keywords" content="802.15.4">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="简单学习了 802.15.4(2015) phy layer 。     PHY（物理层） 通过 RF 固件 和 RF 硬件，在 MAC 子层 与 物理无线信道 之间提供接口。 PHY 组件PHY 概念上包含一个管理实体 PLME（PHY 层管理实体），其职责包括：  提供 层管理服务接口，用于调用层管理功能。 维护 PHY 层 PAN 信息库（PHY PIB），存储 PHY 相关的管理对象。">
+    <meta name="description" content="简单学习了 802.15.4(2015) phy layer 。     PHY servicesPHY（物理层） 通过 RF 固件 和 RF 硬件，在 MAC 子层 与 物理无线信道 之间提供接口。 PHY 组件PHY 概念上包含一个管理实体 PLME（PHY 层管理实体），其职责包括：  提供 层管理服务接口，用于调用层管理功能。 维护 PHY 层 PAN 信息库（PHY PIB），存储 PH">
 <meta property="og:type" content="article">
 <meta property="og:title" content="802-15-4-phy_related">
 <meta property="og:url" content="http://example.com/wiki/802-15-4-phy-related/index.html">
 <meta property="og:site_name" content="muyin568">
-<meta property="og:description" content="简单学习了 802.15.4(2015) phy layer 。     PHY（物理层） 通过 RF 固件 和 RF 硬件，在 MAC 子层 与 物理无线信道 之间提供接口。 PHY 组件PHY 概念上包含一个管理实体 PLME（PHY 层管理实体），其职责包括：  提供 层管理服务接口，用于调用层管理功能。 维护 PHY 层 PAN 信息库（PHY PIB），存储 PHY 相关的管理对象。">
+<meta property="og:description" content="简单学习了 802.15.4(2015) phy layer 。     PHY servicesPHY（物理层） 通过 RF 固件 和 RF 硬件，在 MAC 子层 与 物理无线信道 之间提供接口。 PHY 组件PHY 概念上包含一个管理实体 PLME（PHY 层管理实体），其职责包括：  提供 层管理服务接口，用于调用层管理功能。 维护 PHY 层 PAN 信息库（PHY PIB），存储 PH">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/12_phy_services.png">
+<meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/14_phy_data_rate1.png">
+<meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/15_phy_data_rate2.png">
 <meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/13_phy_mod.png">
+<meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/16_phy_symbol2chip.png">
+<meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/17_pyh_qi_delay.png">
+<meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/18_phy_pulse.png">
 <meta property="article:published_time" content="2025-03-31T00:14:40.000Z">
-<meta property="article:modified_time" content="2025-03-31T01:04:12.208Z">
+<meta property="article:modified_time" content="2025-04-01T01:07:23.492Z">
 <meta property="article:author" content="muyin">
 <meta property="article:tag" content="802.15.4">
 <meta name="twitter:card" content="summary">
@@ -308,7 +313,7 @@
             
                 <div id="toc" class="toc-article">
                 <strong class="toc-title">Catalogue</strong>
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#10-1-%E9%80%9A%E7%94%A8%E8%A6%81%E6%B1%82%E4%B8%8E%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">10.1 通用要求与定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C-PHY-%E7%B1%BB%E5%9E%8B%E7%9A%84-PDU-%E5%BD%A2%E5%BC%8F%E6%98%AF%E5%90%A6%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">不同 PHY 类型的 PDU 形式是否不同？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B-O-QPSK-PHY"><span class="toc-number">3.</span> <span class="toc-text">举例 O-QPSK PHY</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#PHY-services"><span class="toc-number">1.</span> <span class="toc-text">PHY services</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E8%A6%81%E6%B1%82%E4%B8%8E%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">通用要求与定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C-PHY-%E7%B1%BB%E5%9E%8B%E7%9A%84-PDU-%E5%BD%A2%E5%BC%8F%E6%98%AF%E5%90%A6%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">不同 PHY 类型的 PDU 形式是否不同？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B-O-QPSK-PHY"><span class="toc-number">4.</span> <span class="toc-text">举例 O-QPSK PHY</span></a></li></ol>
                 </div>
             
         
@@ -318,7 +323,7 @@
 
 <center><img src="/../images/802-15-4-mac-frm/12_phy_services.png" width="400px"></center>
 
-<p><strong>PHY（物理层）</strong> 通过 <strong>RF 固件</strong> 和 <strong>RF 硬件</strong>，在 <strong>MAC 子层</strong> 与 <strong>物理无线信道</strong> 之间提供接口。<br><br></p>
+<h4 id="PHY-services"><a href="#PHY-services" class="headerlink" title="PHY services"></a>PHY services</h4><p><strong>PHY（物理层）</strong> 通过 <strong>RF 固件</strong> 和 <strong>RF 硬件</strong>，在 <strong>MAC 子层</strong> 与 <strong>物理无线信道</strong> 之间提供接口。<br><br></p>
 <p><strong>PHY 组件</strong><br>PHY 概念上包含一个管理实体 <strong>PLME（PHY 层管理实体）</strong>，其职责包括：</p>
 <ul>
 <li>提供 <strong>层管理服务接口</strong>，用于调用层管理功能。</li>
@@ -359,7 +364,7 @@
 </ul>
 <hr style="border: 2px solid #000; margin: 20px 0;">
 
-<h4 id="10-1-通用要求与定义"><a href="#10-1-通用要求与定义" class="headerlink" title="10.1 通用要求与定义"></a>10.1 通用要求与定义</h4><p>除非另有规定，所有 <strong>PHY 层</strong> 使用 <strong>2 字节（octet）</strong> 的 <strong>FCS（帧校验序列）</strong>。</p>
+<h4 id="通用要求与定义"><a href="#通用要求与定义" class="headerlink" title="通用要求与定义"></a>通用要求与定义</h4><p>除非另有规定，所有 <strong>PHY 层</strong> 使用 <strong>2 字节（octet）</strong> 的 <strong>FCS（帧校验序列）</strong>。</p>
 <p><strong>PHY 层的主要职责</strong><br>PHY 层负责以下任务：</p>
 <ul>
 <li><strong>激活和关闭</strong> 无线收发器</li>
@@ -473,24 +478,72 @@
 <br>
 
 <p><strong>调制与扩频</strong><br>O-QPSK PHY 使用一种 16 进制准正交调制技术。在每个数据符号周期中，四个信息比特用于选择 16 种几乎正交的伪随机噪声（PN）序列之一进行传输。连续的数据符号的 PN 序列被串联起来，聚合的芯片序列通过偏移正交相位移键控（O-QPSK）调制到载波上。<br><br></p>
+<p><strong>数据速率：</strong> </p>
 <ul>
-<li><strong>数据速率：</strong> <ul>
 <li>在 2450 MHz、915 MHz、780 MHz 或 2380 MHz 频段时，数据速率为 <strong>250 kb&#x2F;s</strong>。</li>
 <li>在 868 MHz 频段时，数据速率为 <strong>100 kb&#x2F;s</strong>。</li>
 </ul>
-</li>
+<center><img src="/../images/802-15-4-mac-frm/14_phy_data_rate1.png" width="400px"></center>
+<center><img src="/../images/802-15-4-mac-frm/15_phy_data_rate2.png" width="400px"></center>
+
+<br>
+
+<ul>
 <li><strong>2450 MHz O-QPSK PHY 的支持：</strong> 在 2450 MHz 频段时，必须支持 O-QPSK PHY。</li>
 <li><strong>2380 MHz O-QPSK PHY 的支持：</strong> 在 2380 MHz 频段时，必须支持 O-QPSK PHY。</li>
 <li><strong>868 MHz 或 915 MHz 频段的 O-QPSK PHY：</strong> <ul>
 <li>O-QPSK PHY 在 868 MHz 或 915 MHz 频段并非强制要求。</li>
 <li>如果在这些频段使用 O-QPSK PHY，则该设备还必须能够使用 BPSK PHY 信号进行通信。</li>
 </ul>
-</li>
+<br></li>
 </ul>
-<br>
-
 <p><strong>参考调制器图</strong></p>
 <center><img src="/../images/802-15-4-mac-frm/13_phy_mod.png" width="600px"></center>
+<br>
+
+<p><strong>bit到symbol映射</strong></p>
+<ul>
+<li>每个字节（octet）的 <strong>4 个最低有效位（LSBs）</strong> (b0, b1, b2, b3) 映射到一个数据符号 （下表的0～15）。</li>
+<li><strong>4 个最高有效位（MSBs）</strong> (b4, b5, b6, b7) 映射到下一个数据符号。</li>
+<li>PPDU 的每个字节都会按顺序通过调制和扩频处理，从 <strong>前导码（Preamble）字段</strong> 开始，直到 <strong>PSDU 的最后一个字节</strong>。</li>
+<li>在每个字节中：<ul>
+<li><strong>最低有效符号</strong> (b0, b1, b2, b3) 先被处理。</li>
+<li><strong>最高有效符号</strong> (b4, b5, b6, b7) 后被处理。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>symbol到chip映射</strong></p>
+<ul>
+<li>在 <strong>2450 MHz 和 2380 MHz 频段</strong>，每个数据符号映射到一个 <strong>32 芯片（chip）</strong> 的伪随机噪声（PN）序列。</li>
+<li>这些 PN 序列通过循环移位（cyclic shifts）和&#x2F;或共轭（conjugation，即奇数索引的芯片值反转）相互关联。</li>
+</ul>
+<center><img src="/../images/802-15-4-mac-frm/16_phy_symbol2chip.png" width="600px"></center>
+
+<hr>
+<p><strong>O-QPSK 调制</strong></p>
+<ul>
+<li><strong>芯片序列调制方式：</strong><ul>
+<li><strong>偶数索引芯片（even-indexed chips）</strong> 调制到 <strong>同相（I）载波</strong>。</li>
+<li><strong>奇数索引芯片（odd-indexed chips）</strong> 调制到 <strong>正交（Q）载波</strong>。</li>
+</ul>
+</li>
+<li><strong>不同频段的符号到芯片映射：</strong><ul>
+<li>在 <strong>2450 MHz 和 2380 MHz 频段</strong>，每个数据符号映射到 <strong>32 芯片</strong>，因此芯片速率是 <strong>符号速率的 32 倍</strong>。</li>
+<li>在 <strong>915 MHz、868 MHz 和 780 MHz 频段</strong>，每个数据符号映射到 <strong>16 芯片</strong>，因此芯片速率是 <strong>符号速率的 16 倍</strong>。</li>
+</ul>
+</li>
+<li><strong>I 相与 Q 相的时间偏移：</strong><ul>
+<li><strong>Q 相芯片（Q-phase chips）</strong> 相对于 <strong>I 相芯片（I-phase chips）</strong> <strong>延迟 Tc</strong>。</li>
+<li><strong>Tc</strong> 是芯片速率的倒数，即 <strong>Tc &#x3D; 1 &#x2F; 芯片速率</strong>。</li>
+<li><strong>图 12-6</strong> 说明了 I 相与 Q 相芯片调制的时间偏移关系。</li>
+</ul>
+</li>
+</ul>
+<center><img src="/../images/802-15-4-mac-frm/17_pyh_qi_delay.png" width="600px"></center>
+
+<p><strong>Pulse shape</strong></p>
+<center><img src="/../images/802-15-4-mac-frm/18_phy_pulse.png" width="600px"></center>****
             </div>
         
         <footer class="article-footer">
