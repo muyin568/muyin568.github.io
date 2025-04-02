@@ -23,8 +23,9 @@
 <meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/16_phy_symbol2chip.png">
 <meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/17_pyh_qi_delay.png">
 <meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/18_phy_pulse.png">
+<meta property="og:image" content="http://example.com/images/802-15-4-mac-frm/19_phy_tx_limit.png">
 <meta property="article:published_time" content="2025-03-31T00:14:40.000Z">
-<meta property="article:modified_time" content="2025-04-01T01:07:23.492Z">
+<meta property="article:modified_time" content="2025-04-02T00:54:44.110Z">
 <meta property="article:author" content="muyin">
 <meta property="article:tag" content="802.15.4">
 <meta name="twitter:card" content="summary">
@@ -313,7 +314,7 @@
             
                 <div id="toc" class="toc-article">
                 <strong class="toc-title">Catalogue</strong>
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#PHY-services"><span class="toc-number">1.</span> <span class="toc-text">PHY services</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E8%A6%81%E6%B1%82%E4%B8%8E%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">通用要求与定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C-PHY-%E7%B1%BB%E5%9E%8B%E7%9A%84-PDU-%E5%BD%A2%E5%BC%8F%E6%98%AF%E5%90%A6%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">不同 PHY 类型的 PDU 形式是否不同？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B-O-QPSK-PHY"><span class="toc-number">4.</span> <span class="toc-text">举例 O-QPSK PHY</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#PHY-services"><span class="toc-number">1.</span> <span class="toc-text">PHY services</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E8%A6%81%E6%B1%82%E4%B8%8E%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">通用要求与定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C-PHY-%E7%B1%BB%E5%9E%8B%E7%9A%84-PDU-%E5%BD%A2%E5%BC%8F%E6%98%AF%E5%90%A6%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">不同 PHY 类型的 PDU 形式是否不同？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B-O-QPSK-PHY"><span class="toc-number">4.</span> <span class="toc-text">举例 O-QPSK PHY</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#O-QPSK-PHY-RF-requirements"><span class="toc-number">4.1.</span> <span class="toc-text">O-QPSK PHY RF requirements</span></a></li></ol></li></ol>
                 </div>
             
         
@@ -543,7 +544,36 @@
 <center><img src="/../images/802-15-4-mac-frm/17_pyh_qi_delay.png" width="600px"></center>
 
 <p><strong>Pulse shape</strong></p>
-<center><img src="/../images/802-15-4-mac-frm/18_phy_pulse.png" width="600px"></center>****
+<center><img src="/../images/802-15-4-mac-frm/18_phy_pulse.png" width="600px"></center>
+
+<hr style="border: 2px solid #000; margin: 20px 0;">
+
+<h5 id="O-QPSK-PHY-RF-requirements"><a href="#O-QPSK-PHY-RF-requirements" class="headerlink" title="O-QPSK PHY RF requirements"></a>O-QPSK PHY RF requirements</h5><p><strong>O-QPSK PHY 在以下频段内运行：</strong></p>
+<ul>
+<li><strong>779–787 MHz</strong></li>
+<li><strong>868.0–868.6 MHz</strong></li>
+<li><strong>902–928 MHz</strong></li>
+<li><strong>2360–2400 MHz</strong></li>
+<li><strong>2400.0–2483.5 MHz</strong></li>
+</ul>
+<p>其中，<strong>2400.0–2483.5 MHz 频段</strong>（即 2.4 GHz 频段）是 O-QPSK 在 IEEE 802.15.4 标准中最常用的频段，支持 <strong>250 kbps</strong> 传输速率，并且具有全球通用性。</p>
+<hr>
+<br>
+
+<p><strong>Transmit power spectral density (PSD) mask</strong></p>
+<center><img src="/../images/802-15-4-mac-frm/19_phy_tx_limit.png" width="600px"></center>
+
+<p><strong>符号速率</strong></p>
+<ul>
+<li><strong>868 MHz 频段</strong>：符号速率为 <strong>25 ksymbol&#x2F;s</strong></li>
+<li><strong>780 MHz、915 MHz、2380 MHz、2450 MHz 频段</strong>：符号速率为 <strong>62.5 ksymbol&#x2F;s</strong></li>
+<li><strong>速率精度</strong>：± 40 × 10⁻⁶</li>
+</ul>
+<p><strong>接收灵敏度</strong> </p>
+<ul>
+<li>在 <strong>10.1.7 规定的测试条件下</strong>，符合标准的设备应具备 <strong>-85 dBm 或更优</strong> 的接收灵敏度。</li>
+</ul>
+
             </div>
         
         <footer class="article-footer">
