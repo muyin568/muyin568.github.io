@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/freertos/1-task_status.png">
 <meta property="article:published_time" content="2025-04-07T00:05:54.000Z">
-<meta property="article:modified_time" content="2025-04-08T01:05:12.587Z">
+<meta property="article:modified_time" content="2025-04-11T01:03:42.857Z">
 <meta property="article:author" content="muyin">
 <meta property="article:tag" content="freeRTOS">
 <meta name="twitter:card" content="summary">
@@ -316,7 +316,7 @@
             
                 <div id="toc" class="toc-article">
                 <strong class="toc-title">Catalogue</strong>
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#FreeRTOS-%E6%9E%B6%E6%9E%84%E6%80%BB%E8%A7%88"><span class="toc-number">1.</span> <span class="toc-text">FreeRTOS 架构总览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="toc-number">2.</span> <span class="toc-text">命名规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task"><span class="toc-number">3.</span> <span class="toc-text">task</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ref-link"><span class="toc-number">4.</span> <span class="toc-text">ref link</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#FreeRTOS-%E6%9E%B6%E6%9E%84%E6%80%BB%E8%A7%88"><span class="toc-number">1.</span> <span class="toc-text">FreeRTOS 架构总览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="toc-number">2.</span> <span class="toc-text">命名规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task"><span class="toc-number">3.</span> <span class="toc-text">task</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task-creation"><span class="toc-number">4.</span> <span class="toc-text">task creation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xTaskCreate-%E8%AF%A6%E7%BB%86trace"><span class="toc-number">5.</span> <span class="toc-text">xTaskCreate 详细trace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ref-link"><span class="toc-number">6.</span> <span class="toc-text">ref link</span></a></li></ol>
                 </div>
             
         
@@ -565,6 +565,113 @@
 <td>- 任务通过 vTaskSuspend() 进入 Suspended 状态，直到显式通过 xTaskResume() 恢复，任务才会转到 Ready 状态，等待调度器调度执行。</td>
 </tr>
 </tbody></table>
+<h3 id="task-creation"><a href="#task-creation" class="headerlink" title="task creation"></a>task creation</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 3 related api, 2 create, 1 delete</span></span><br><span class="line">BaseType_t <span class="title function_">xTaskCreate</span><span class="params">(</span></span><br><span class="line"><span class="params">    TaskFunction_t pvTaskCode,        <span class="comment">// 任务函数</span></span></span><br><span class="line"><span class="params">    <span class="type">const</span> <span class="type">char</span> * <span class="type">const</span> pcName,        <span class="comment">// 任务名称</span></span></span><br><span class="line"><span class="params">    <span class="type">uint16_t</span> usStackDepth,            <span class="comment">// 任务栈大小（单位：字）</span></span></span><br><span class="line"><span class="params">    <span class="type">void</span> *pvParameters,               <span class="comment">// 传递给任务的参数</span></span></span><br><span class="line"><span class="params">    UBaseType_t uxPriority,           <span class="comment">// 任务优先级</span></span></span><br><span class="line"><span class="params">    TaskHandle_t *pxCreatedTask       <span class="comment">// 返回任务句柄</span></span></span><br><span class="line"><span class="params">)</span>;</span><br><span class="line"></span><br><span class="line">TaskHandle_t <span class="title function_">xTaskCreateStatic</span><span class="params">(</span></span><br><span class="line"><span class="params">    TaskFunction_t pvTaskCode,        <span class="comment">// 任务函数</span></span></span><br><span class="line"><span class="params">    <span class="type">const</span> <span class="type">char</span> * <span class="type">const</span> pcName,        <span class="comment">// 任务名称</span></span></span><br><span class="line"><span class="params">    <span class="type">uint16_t</span> usStackDepth,            <span class="comment">// 任务栈大小（单位：字）</span></span></span><br><span class="line"><span class="params">    <span class="type">void</span> *pvParameters,               <span class="comment">// 传递给任务的参数</span></span></span><br><span class="line"><span class="params">    UBaseType_t uxPriority,           <span class="comment">// 任务优先级</span></span></span><br><span class="line"><span class="params">    StackType_t *pxStackBuffer,       <span class="comment">// 用户提供的栈空间</span></span></span><br><span class="line"><span class="params">    StaticTask_t *pxTaskBuffer        <span class="comment">// 用户提供的任务控制块（TCB）</span></span></span><br><span class="line"><span class="params">)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">vTaskDelete</span><span class="params">( TaskHandle_t xTask )</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>xTaskCreate xTaskCreateStatic 最主要的区别是 task memory 的来源，tcb + stack 来源于用户分配 &#x2F; 系统分配</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>xTaskCreate()</strong></th>
+<th><strong>xTaskCreateStatic()</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>内存分配方式</strong></td>
+<td>动态分配内存，通过 FreeRTOS 内部的堆管理器进行分配。</td>
+<td>静态分配内存，使用用户提供的内存块，不依赖动态内存管理。</td>
+</tr>
+<tr>
+<td><strong>任务控制块（TCB）</strong></td>
+<td>动态分配一个任务控制块（TCB）和任务栈空间。</td>
+<td>用户提供自己的任务控制块（TCB）和栈空间。</td>
+</tr>
+<tr>
+<td><strong>使用内存</strong></td>
+<td>依赖于 pvPortMalloc()（默认的堆分配器）。</td>
+<td>直接使用静态内存，避免了堆内存分配和回收的开销。</td>
+</tr>
+<tr>
+<td><strong>任务栈</strong></td>
+<td>由 xTaskCreate() 内部创建并分配栈空间。</td>
+<td>用户提供栈空间，通过 xTaskCreateStatic() 指定栈空间。</td>
+</tr>
+<tr>
+<td><strong>调试和优化</strong></td>
+<td>动态内存分配可能会引入堆碎片和不确定的内存问题。</td>
+<td>静态内存分配更可靠，适用于嵌入式系统，避免了堆碎片问题。</td>
+</tr>
+<tr>
+<td><strong>优点</strong></td>
+<td>简单易用，适用于大多数应用。</td>
+<td>无堆内存依赖，更高效，适用于内存受限的系统或不希望使用堆的情况。</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="xTaskCreate-详细trace"><a href="#xTaskCreate-详细trace" class="headerlink" title="xTaskCreate 详细trace"></a>xTaskCreate 详细trace</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只列举了必要的 tcb item</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tskTaskControlBlock</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">volatile</span> StackType_t *pxTopOfStack;   <span class="comment">/* 栈顶指针（指向栈顶） */</span></span><br><span class="line">    StackType_t *pxEndOfStack</span><br><span class="line">    ListItem_t xStateListItem;            <span class="comment">/* 任务就绪/挂起链表中的元素（用于任务调度） */</span></span><br><span class="line">    ListItem_t xEventListItem;            <span class="comment">/* 事件等待链表元素 */</span></span><br><span class="line">    UBaseType_t uxPriority;               <span class="comment">/* 任务的优先级 */</span></span><br><span class="line">    StackType_t *pxStack;                 <span class="comment">/* 任务栈的起始地址 */</span></span><br><span class="line">    <span class="type">char</span> pcTaskName[ configMAX_TASK_NAME_LEN ]; <span class="comment">/* 任务名称 */</span></span><br><span class="line">    <span class="comment">// ... 其他与任务相关的状态信息 ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><ol>
+<li>申请 <code>TCB mem</code>, 并初始化为 0</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>申请 <code>stack mem</code>, 如果 1 success</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>prvInitialiseNewTask <code>初始化 tcb + stack</code>, 初始化tcb 中的item，将stack 初始成刚从中断回归的样子（reg 排放位置不同的指令集不同）</li>
+</ol>
+</li>
+</ul>
+<br>
+
+<p><strong>prvInitialiseNewTask</strong> </p>
+<ul>
+<li><ol>
+<li>将 stack mem 填充为规律的字符串， 如 0xa5U</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>初始化 tcb pxTopOfStack &#x2F; tcb pxEndOfStack</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   pxTopOfStack = pxNewTCB-&gt;pxStack; <span class="comment">// 获取栈起始地址</span></span><br><span class="line"><span class="comment">// 对齐到目标字节边界（如 4/8 字节对齐），避免硬件访问异常</span></span><br><span class="line">   pxTopOfStack = ( StackType_t * ) ( ( ( ( portPOINTER_SIZE_TYPE ) pxTopOfStack ) + portBYTE_ALIGNMENT_MASK ) &amp; ( ~( ( portPOINTER_SIZE_TYPE ) portBYTE_ALIGNMENT_MASK ) ) );</span><br><span class="line">  </span><br><span class="line">   <span class="comment">/* Check the alignment of the calculated top of stack is correct. 断言验证对齐成功*/</span></span><br><span class="line">   configASSERT( ( ( ( portPOINTER_SIZE_TYPE ) pxTopOfStack &amp; ( portPOINTER_SIZE_TYPE ) portBYTE_ALIGNMENT_MASK ) == <span class="number">0U</span> ) );</span><br><span class="line">  </span><br><span class="line">   <span class="comment">/* The other extreme of the stack space is required if stack checking is</span></span><br><span class="line"><span class="comment">    * performed. 保存栈空间的“顶端”地址，给栈溢出检测或栈指针初始化使用*/</span></span><br><span class="line">   pxNewTCB-&gt;pxEndOfStack = pxNewTCB-&gt;pxStack + ( uxStackDepth - ( configSTACK_DEPTH_TYPE ) <span class="number">1</span> );</span><br></pre></td></tr></table></figure>
+<p><code>举例 ： (pxTopOfStack + portBYTE_ALIGNMENT_MASK) = 0x10003 + 0x07 = 0x1000A , 然后与 ~(0x07) = 0x1000A &amp; 0xFFFFFFF8 = 0x10008</code></p>
+</li>
+<li><ol start="3">
+<li>赋值 tcb pcTaskName</li>
+</ol>
+</li>
+<li><ol start="4">
+<li><p>规范化 uxPriority 使&lt; max priority , 并赋值 tcb uxPriority</p>
+<table>
+<thead>
+<tr>
+<th>uxPriority (任务优先级)**</th>
+<th><strong>item value &#x3D; configMAX_PRIORITIES - uxPriority</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>5</td>
+<td>10 - 5 &#x3D; 5</td>
+</tr>
+<tr>
+<td>8</td>
+<td>10 - 8 &#x3D; 2 (值更小，排更前面)</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>init list item ; 设定 list item owner 为 tcb, 通过 listSET_LIST_ITEM_OWNER; 设定 evt list item value 为 priority（用来之后按优先级处理evt）; 	<code>xStateListItem ：用于任务所在的调度器状态队列，比如就绪队列、挂起队列、延时队列。xEventListItem ：用于事件队列，比如信号量等待队列，事件组等待队列。</code></li>
+</ol>
+</li>
+<li><ol start="6">
+<li>init stack ~ pxPortInitialiseStack (不同的assemble code 使用的不同的恢复现场的方式，所以这里的实现也不同)</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">StackType_t *<span class="title function_">pxPortInitialiseStack</span><span class="params">( StackType_t *pxTopOfStack, TaskFunction_t pxTaskCode, <span class="type">void</span> *pvParameters )</span></span><br><span class="line">  &#123;</span><br><span class="line">      <span class="comment">/* 假设栈是从高地址开始向下增长 */</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">/* 设置任务栈的内容 */</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">/* 初始化栈的内容，模拟从中断返回的情况 */</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">/* mstatus 寄存器: 设置为用户模式 */</span></span><br><span class="line">      pxTopOfStack--; <span class="comment">/* mstatus 的位置 */</span></span><br><span class="line">      *pxTopOfStack = ( StackType_t ) <span class="number">0x00000000U</span>;  <span class="comment">/* 设置为用户模式，具体值视情况而定 */</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">/* pc 寄存器：程序计数器，任务的入口地址 pxTaskCode */</span></span><br><span class="line">      pxTopOfStack--; <span class="comment">/* pc 寄存器的位置 */</span></span><br><span class="line">      *pxTopOfStack = ( StackType_t ) pxTaskCode;</span><br><span class="line">      </span><br><span class="line">      <span class="comment">/* 保存其它寄存器内容，设为默认值（0 或者特定初始化值） */</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">31</span>; i++) &#123;</span><br><span class="line">          pxTopOfStack--; <span class="comment">/* x0 ~ x31 寄存器的栈位置 */</span></span><br><span class="line">          *pxTopOfStack = <span class="number">0</span>;  <span class="comment">/* 默认为 0 */</span></span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      <span class="comment">/* 保存函数参数（pvParameters），即传递给任务函数的参数 */</span></span><br><span class="line">      pxTopOfStack--; <span class="comment">/* x0 寄存器的位置 */</span></span><br><span class="line">      *pxTopOfStack = ( StackType_t ) pvParameters;</span><br><span class="line">      </span><br><span class="line">      <span class="comment">/* 中断标志寄存器 mtvec, mcause, mepc 通常在调度时恢复，这里可以初始化为零 */</span></span><br><span class="line">      <span class="comment">/* 这在实际中一般不需要，因为 FreeRTOS 主要是模拟中断返回来进行任务切换 */</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">/* 返回任务栈的顶部指针，栈已经初始化 */</span></span><br><span class="line">      <span class="keyword">return</span> pxTopOfStack;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* stack 初始化后的长相，下次切换到此task后可以直接从这个现场开始run</span></span><br><span class="line"><span class="comment">  +---------------------------+ &lt;- 栈顶 (pxTopOfStack)</span></span><br><span class="line"><span class="comment">  |       mstatus             | &lt;- 任务的 mstatus 寄存器 (用户模式标志等)</span></span><br><span class="line"><span class="comment">  +---------------------------+</span></span><br><span class="line"><span class="comment">  |       pc (Task Code)      | &lt;- 程序计数器 (指向任务入口地址)</span></span><br><span class="line"><span class="comment">  +---------------------------+</span></span><br><span class="line"><span class="comment">  |       x31                 | &lt;- 寄存器 x31 (初始化为 0)</span></span><br><span class="line"><span class="comment">  +---------------------------+</span></span><br><span class="line"><span class="comment">  |       x30                 | &lt;- 寄存器 x30 (初始化为 0)</span></span><br><span class="line"><span class="comment">  +---------------------------+</span></span><br><span class="line"><span class="comment">  |         ...                | &lt;- 其他通用寄存器 x29, x28, ..., x1 (初始化为 0)</span></span><br><span class="line"><span class="comment">  +---------------------------+</span></span><br><span class="line"><span class="comment">  |       x0                  | &lt;- 寄存器 x0 (初始化为 0)</span></span><br><span class="line"><span class="comment">  +---------------------------+</span></span><br><span class="line"><span class="comment">  |       pvParameters        | &lt;- 任务的参数 pvParameters</span></span><br><span class="line"><span class="comment">  +---------------------------+ &lt;- 栈底 (pxStack)</span></span><br><span class="line"><span class="comment">  */</span></span><br></pre></td></tr></table></figure></li>
+</ul>
 <h3 id="ref-link"><a href="#ref-link" class="headerlink" title="ref link"></a>ref link</h3><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://wiki.csie.ncku.edu.tw/embedded/freertos">https://wiki.csie.ncku.edu.tw/embedded/freertos</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.freertos.org/">https://www.freertos.org/</a></p>
 
             </div>
