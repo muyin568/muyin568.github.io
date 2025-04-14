@@ -18,8 +18,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/freertos/1-task_status.png">
 <meta property="og:image" content="http://example.com/images/freertos/2-ready_list_struct.png">
+<meta property="og:image" content="http://example.com/images/freertos/3-ready_list_item.png">
 <meta property="article:published_time" content="2025-04-07T00:05:54.000Z">
-<meta property="article:modified_time" content="2025-04-12T01:40:14.214Z">
+<meta property="article:modified_time" content="2025-04-14T00:58:53.532Z">
 <meta property="article:author" content="muyin">
 <meta property="article:tag" content="freeRTOS">
 <meta name="twitter:card" content="summary">
@@ -566,6 +567,55 @@
 <td>- 任务通过 vTaskSuspend() 进入 Suspended 状态，直到显式通过 xTaskResume() 恢复，任务才会转到 Ready 状态，等待调度器调度执行。</td>
 </tr>
 </tbody></table>
+<table>
+<thead>
+<tr>
+<th><strong>state</strong></th>
+<th><strong>global var</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Running</strong></td>
+<td>TCB_t * volatile pxCurrentTCB</td>
+<td>因为运行态的任务永远只有一个，所以使用 pxCurrentTCB 指向当前任务的 TCB。</td>
+</tr>
+<tr>
+<td><strong>Ready</strong></td>
+<td>static List_t pxReadyTasksLists[configMAX_PRIORITIES]</td>
+<td>该数组存储每个优先级的就绪任务队列。configMAX_PRIORITIES 对应最大的任务优先级，任务按优先级被添加到对应链表中。</td>
+</tr>
+<tr>
+<td></td>
+<td>static List_t xPendingReadyList</td>
+<td>当调度器被挂起时，待唤醒的任务首先添加到此链表，恢复调度器后再将其转移到就绪链表中。此链表用于暂存调度器被挂起时的就绪任务。</td>
+</tr>
+<tr>
+<td><strong>Blocked</strong></td>
+<td>static List_t xDelayedTaskList1</td>
+<td>当任务在<strong>等待某个事件</strong>或者<strong>主动delay</strong>的时候，就会被添加到延迟链表中，并根据即将溢出的时间（链表中的值为 xConstTickCount + xTicksToWait）先后顺序排列</td>
+</tr>
+<tr>
+<td></td>
+<td>static List_t xDelayedTaskList2</td>
+<td>当该延迟时间溢出（xConstTickCount + xTicksToWait 小于 xConstTickCount）时就会被添加到延迟溢出链表，当系统时间溢出后，调用 taskSWITCH_DELAYED_LISTS 将链表pxDelayedTaskList 和 pxOverflowDelayedTaskList 交换</td>
+</tr>
+<tr>
+<td></td>
+<td>static List_t * volatile pxDelayedTaskList</td>
+<td>用于指向当前的延迟任务链表，通常是 xDelayedTaskList1。</td>
+</tr>
+<tr>
+<td></td>
+<td>static List_t * volatile pxOverflowDelayedTaskList</td>
+<td>当系统时间溢出后，延迟时间溢出的任务会被转移到此链表。</td>
+</tr>
+<tr>
+<td><strong>Suspend</strong></td>
+<td>static List_t xSuspendedTaskList</td>
+<td>存储被挂起的任务，这些任务不再参与调度，直到被显式恢复。</td>
+</tr>
+</tbody></table>
 <h3 id="task-creation"><a href="#task-creation" class="headerlink" title="task creation"></a>task creation</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 3 related api, 2 create, 1 delete</span></span><br><span class="line">BaseType_t <span class="title function_">xTaskCreate</span><span class="params">(</span></span><br><span class="line"><span class="params">    TaskFunction_t pvTaskCode,        <span class="comment">// 任务函数</span></span></span><br><span class="line"><span class="params">    <span class="type">const</span> <span class="type">char</span> * <span class="type">const</span> pcName,        <span class="comment">// 任务名称</span></span></span><br><span class="line"><span class="params">    <span class="type">uint16_t</span> usStackDepth,            <span class="comment">// 任务栈大小（单位：字）</span></span></span><br><span class="line"><span class="params">    <span class="type">void</span> *pvParameters,               <span class="comment">// 传递给任务的参数</span></span></span><br><span class="line"><span class="params">    UBaseType_t uxPriority,           <span class="comment">// 任务优先级</span></span></span><br><span class="line"><span class="params">    TaskHandle_t *pxCreatedTask       <span class="comment">// 返回任务句柄</span></span></span><br><span class="line"><span class="params">)</span>;</span><br><span class="line"></span><br><span class="line">TaskHandle_t <span class="title function_">xTaskCreateStatic</span><span class="params">(</span></span><br><span class="line"><span class="params">    TaskFunction_t pvTaskCode,        <span class="comment">// 任务函数</span></span></span><br><span class="line"><span class="params">    <span class="type">const</span> <span class="type">char</span> * <span class="type">const</span> pcName,        <span class="comment">// 任务名称</span></span></span><br><span class="line"><span class="params">    <span class="type">uint16_t</span> usStackDepth,            <span class="comment">// 任务栈大小（单位：字）</span></span></span><br><span class="line"><span class="params">    <span class="type">void</span> *pvParameters,               <span class="comment">// 传递给任务的参数</span></span></span><br><span class="line"><span class="params">    UBaseType_t uxPriority,           <span class="comment">// 任务优先级</span></span></span><br><span class="line"><span class="params">    StackType_t *pxStackBuffer,       <span class="comment">// 用户提供的栈空间</span></span></span><br><span class="line"><span class="params">    StaticTask_t *pxTaskBuffer        <span class="comment">// 用户提供的任务控制块（TCB）</span></span></span><br><span class="line"><span class="params">)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">vTaskDelete</span><span class="params">( TaskHandle_t xTask )</span>;</span><br></pre></td></tr></table></figure>
 
 <p><strong>xTaskCreate xTaskCreateStatic 最主要的区别是 task memory 的来源，tcb + stack 来源于用户分配 &#x2F; 系统分配</strong></p>
@@ -676,6 +726,7 @@
 <hr>
 <h4 id="step2-prvAddNewTaskToReadyList"><a href="#step2-prvAddNewTaskToReadyList" class="headerlink" title="step2 - prvAddNewTaskToReadyList"></a>step2 - prvAddNewTaskToReadyList</h4><p>ready list 结构如下图，是一个数组，数组的每个item 挂了一串同优先级的 tcb-&gt;state_item</p>
 <center><img src="/../images/freertos/2-ready_list_struct.png" width="500px"></center>
+<center><img src="/../images/freertos/3-ready_list_item.png" width="500px"></center>
 
 <p>操作了很多 global var， 所以func 基本都在屏蔽中断中run</p>
 <ul>
@@ -696,7 +747,10 @@
 <li>7.开中断</li>
 <li>8.xSchedulerRunning !&#x3D; pdFALSE，调用 portYield 切换task，新task priority 优先级可能higher</li>
 </ul>
-<h3 id="ref-link"><a href="#ref-link" class="headerlink" title="ref link"></a>ref link</h3><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://wiki.csie.ncku.edu.tw/embedded/freertos">https://wiki.csie.ncku.edu.tw/embedded/freertos</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.freertos.org/">https://www.freertos.org/</a></p>
+<hr style="border: 2px solid #000; margin: 20px 0;">
+
+
+<h3 id="ref-link"><a href="#ref-link" class="headerlink" title="ref link"></a>ref link</h3><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://wiki.csie.ncku.edu.tw/embedded/freertos">https://wiki.csie.ncku.edu.tw/embedded/freertos</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.freertos.org/">https://www.freertos.org/</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.cnblogs.com/zhn11212023/p/13115799.html">https://www.cnblogs.com/zhn11212023/p/13115799.html</a></p>
 
             </div>
         
