@@ -4,7 +4,16 @@
   <url>
     <loc>http://example.com/wiki/freertos-que/</loc>
     
-    <lastmod>2025-04-17</lastmod>
+    <lastmod>2025-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/wiki/freertos-list/</loc>
+    
+    <lastmod>2025-04-22</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -94,7 +103,7 @@
 
   <url>
     <loc>http://example.com/</loc>
-    <lastmod>2025-04-17</lastmod>
+    <lastmod>2025-04-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -102,21 +111,21 @@
   
   <url>
     <loc>http://example.com/tags/802-15-4/</loc>
-    <lastmod>2025-04-17</lastmod>
+    <lastmod>2025-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/hexo/</loc>
-    <lastmod>2025-04-17</lastmod>
+    <lastmod>2025-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/freeRTOS/</loc>
-    <lastmod>2025-04-17</lastmod>
+    <lastmod>2025-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -125,21 +134,21 @@
   
   <url>
     <loc>http://example.com/categories/802-15-4/</loc>
-    <lastmod>2025-04-17</lastmod>
+    <lastmod>2025-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/%E6%8A%80%E6%9C%AF%E6%9D%82%E8%B0%88/</loc>
-    <lastmod>2025-04-17</lastmod>
+    <lastmod>2025-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/freeRTOS/</loc>
-    <lastmod>2025-04-17</lastmod>
+    <lastmod>2025-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

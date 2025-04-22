@@ -190,7 +190,7 @@
                         </a>
                          <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/hexo-image-sync-my-solution/">hexo github.io image 显示异常</a></li>  </ul> 
                     </li> 
-                     </ul> 
+                     <li class="file"><a href="/wiki/freertos-list/">freertos-list</a></li>  </ul> 
     </div>
     <script>
         $(document).ready(function() {
@@ -262,6 +262,87 @@
 </aside>
             
             <section id="main">
+        <article id="post-freertos-list" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/freertos-list/">
+            <time datetime="2025-04-22T01:08:12.000Z" itemprop="datePublished">2025-04-22</time>
+        </a>
+    </div>
+
+
+                        
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/wiki/freertos-list/">freertos-list</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+<ul>
+<li><a href></a></li>
+<li><a href></a></li>
+</ul>
+<p>
+                
+            
+        
+        
+            </p></blockquote></div>   
+            <div class="article-more-link">
+                <a href="/wiki/freertos-list/#more">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-freertos-que" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -327,17 +408,17 @@
                 
                 
                     
-                    <p></p><h3 id="QueueDefinition-结构体"><a href="#QueueDefinition-结构体" class="headerlink" title="QueueDefinition 结构体"></a><code>QueueDefinition</code> 结构体</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">+-----------------------------------------------------+</span><br><span class="line">|                QueueDefinition                      |</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  int8_t *pcHead;                                    |  &lt;-- 指向队列存储区的开始位置</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  int8_t *pcWriteTo;                                 |  &lt;-- 指向队列下一个可写位置</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  union                                              |</span><br><span class="line">|  &#123;                                                  |</span><br><span class="line">|    QueuePointers_t xQueue;                          |  &lt;-- 使用队列时需要的相关数据</span><br><span class="line">|    SemaphoreData_t xSemaphore;                      |  &lt;-- 使用信号量时需要的相关数据</span><br><span class="line">|  &#125; u;                                               |</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  List_t xTasksWaitingToSend;                        |  &lt;-- 存储等待发送到队列的任务（按优先级顺序）</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  List_t xTasksWaitingToReceive;                     |  &lt;-- 存储等待从队列接收数据的任务（按优先级顺序）</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  volatile UBaseType_t uxMessagesWaiting;            |  &lt;-- 当前队列中的项目数</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  UBaseType_t uxLength;                              |  &lt;-- 队列的长度（队列可以容纳的项的数量）</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  UBaseType_t uxItemSize;                            |  &lt;-- 队列每个项的大小</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  volatile int8_t cRxLock;                           |  &lt;-- 存储队列接收锁定期间接收的项目数量</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  volatile int8_t cTxLock;                           |  &lt;-- 存储队列发送锁定期间传输的项目数量</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  #if ( ( configSUPPORT_STATIC_ALLOCATION == 1 ) &amp;&amp;  |</span><br><span class="line">|       ( configSUPPORT_DYNAMIC_ALLOCATION == 1 ) )   |</span><br><span class="line">|    uint8_t ucStaticallyAllocated;                   |  &lt;-- 如果队列内存是静态分配的，则为 pdTRUE</span><br><span class="line">|  #endif                                             |</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  #if ( configUSE_QUEUE_SETS == 1 )                  |</span><br><span class="line">|    struct QueueDefinition * pxQueueSetContainer;    |  &lt;-- 队列所在的队列集容器（如果启用队列集）</span><br><span class="line">|  #endif                                             |</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  #if ( configUSE_TRACE_FACILITY == 1 )              |</span><br><span class="line">|    UBaseType_t uxQueueNumber;                       |  &lt;-- 队列的唯一标识符</span><br><span class="line">|    uint8_t ucQueueType;                             |  &lt;-- 队列类型（队列或信号量）</span><br><span class="line">|  #endif                                             |</span><br><span class="line">+-----------------------------------------------------+</span><br></pre></td></tr></table></figure>
+                    <p></p><p>freertos que ：create , send , receive msg</p>
+<hr style="border: 2px solid #000; margin: 20px 0;">
 
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><blockquote>
-<ul>
-<li><a href></a></li>
+<h3 id="Queue-overview"><a href="#Queue-overview" class="headerlink" title="Queue overview"></a>Queue overview</h3><p><strong><code>QueueDefinition</code> 结构体</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">+-----------------------------------------------------+</span><br><span class="line">|                QueueDefinition                      |</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  int8_t *pcHead;                                    |  &lt;-- 指向队列存储区的开始位置</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  int8_t *pcWriteTo;                                 |  &lt;-- 指向队列下一个可写位置</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  union                                              |</span><br><span class="line">|  &#123;                                                  |</span><br><span class="line">|    QueuePointers_t xQueue;                          |  &lt;-- 使用队列时需要的相关数据</span><br><span class="line">|    SemaphoreData_t xSemaphore;                      |  &lt;-- 使用信号量时需要的相关数据</span><br><span class="line">|  &#125; u;                                               |</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  List_t xTasksWaitingToSend;                        |  &lt;-- 存储等待发送到队列的任务（按优先级顺序）</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  List_t xTasksWaitingToReceive;                     |  &lt;-- 存储等待从队列接收数据的任务（按优先级顺序）</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  volatile UBaseType_t uxMessagesWaiting;            |  &lt;-- 当前队列中的项目数</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  UBaseType_t uxLength;                              |  &lt;-- 队列的长度（队列可以容纳的项的数量）</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  UBaseType_t uxItemSize;                            |  &lt;-- 队列每个项的大小</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  volatile int8_t cRxLock;                           |  &lt;-- 存储队列接收锁定期间接收的项目数量</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  volatile int8_t cTxLock;                           |  &lt;-- 存储队列发送锁定期间传输的项目数量</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  #if ( ( configSUPPORT_STATIC_ALLOCATION == 1 ) &amp;&amp;  |</span><br><span class="line">|       ( configSUPPORT_DYNAMIC_ALLOCATION == 1 ) )   |</span><br><span class="line">|    uint8_t ucStaticallyAllocated;                   |  &lt;-- 如果队列内存是静态分配的，则为 pdTRUE</span><br><span class="line">|  #endif                                             |</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  #if ( configUSE_QUEUE_SETS == 1 )                  |</span><br><span class="line">|    struct QueueDefinition * pxQueueSetContainer;    |  &lt;-- 队列所在的队列集容器（如果启用队列集）</span><br><span class="line">|  #endif                                             |</span><br><span class="line">+-----------------------------------------------------+</span><br><span class="line">|  #if ( configUSE_TRACE_FACILITY == 1 )              |</span><br><span class="line">|    UBaseType_t uxQueueNumber;                       |  &lt;-- 队列的唯一标识符</span><br><span class="line">|    uint8_t ucQueueType;                             |  &lt;-- 队列类型（队列或信号量）</span><br><span class="line">|  #endif                                             |</span><br><span class="line">+-----------------------------------------------------+</span><br></pre></td></tr></table></figure>
 <p>
                 
             
         
         
-            </p></ul></blockquote></div>   
+            </p></div>   
             <div class="article-more-link">
                 <a href="/wiki/freertos-que/#more">Read More</a>
             </div>
