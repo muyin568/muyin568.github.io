@@ -179,7 +179,7 @@
                             &nbsp;
                             freeRTOS
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/freertos/">freertos-overview && task</a></li>  <li class="file"><a href="/wiki/freertos-que/">freertos-que</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/freertos/">freertos-overview && task</a></li>  <li class="file"><a href="/wiki/freertos-que/">freertos-que</a></li>  <li class="file"><a href="/wiki/freertos-list/">freertos-list</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -190,7 +190,7 @@
                         </a>
                          <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/hexo-image-sync-my-solution/">hexo github.io image 显示异常</a></li>  </ul> 
                     </li> 
-                     <li class="file"><a href="/wiki/freertos-list/">freertos-list</a></li>  </ul> 
+                     </ul> 
     </div>
     <script>
         $(document).ready(function() {
@@ -270,7 +270,17 @@
                 
                     <div class="article-meta">
                         
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/freeRTOS/">freeRTOS</a>
+    </div>
+
                         
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/freeRTOS/" rel="tag">freeRTOS</a>
+    </div>
+
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
@@ -320,8 +330,8 @@
                     <p></p><p>freertos 许多地方都会用到list, 如 que , task …  还是很有必要先了解下 list 操作及结构</p>
 <hr style="border: 2px solid #000; margin: 20px 0;">
 
-<h3 id="list-struct-overview"><a href="#list-struct-overview" class="headerlink" title="list struct overview"></a>list struct overview</h3><p><strong>list 简化描述</strong></p>
-<blockquote>
+<h3 id="list-struct-overview"><a href="#list-struct-overview" class="headerlink" title="list struct overview"></a>list struct overview</h3><blockquote>
+<p>列表相当于链表，列表项相当于节点，FreeRTOS 中的列表是一个<code>**双向循环链表**</code><br>列表项间的<code>**地址非连续**</code>的，列表项的数目随时可以改变<br>列表项<code>list item</code>的指向前一个、后一个指针，就相当于人的左右手，整个列表就相当于N个人互相拉着手，围成一个圈，而列表<code>list</code>是管理这个圈<code>多个link在一起的list item</code>               </p>
 <p>
                 
             
